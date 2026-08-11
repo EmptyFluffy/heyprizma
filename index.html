@@ -140,14 +140,14 @@ button{ font-family:inherit; }
 .rscene{ position:relative; width:min(900px, 94vw); height:min(620px, 80vh); }
 .rscene svg{ position:absolute; inset:0; width:100%; height:100%; overflow:visible; }
 .rlabels{ position:absolute; inset:0; pointer-events:none; }
-.rlab{ position:absolute; top:0; left:0; width:520px; max-width:72vw; opacity:0; will-change:transform,opacity; }
+.rlab{ position:absolute; top:0; left:0; width:540px; max-width:70vw; opacity:0; will-change:transform,opacity; }
 .rhead{ display:flex; align-items:baseline; gap:12px; white-space:nowrap; }
-.rst{ font-size:10px; font-weight:600; letter-spacing:.08em; text-transform:uppercase;
+.rst{ font-size:10.5px; font-weight:600; letter-spacing:.08em; text-transform:uppercase;
   padding:3px 11px; border-radius:100px; border:1px solid var(--line); color:var(--ink-dim);
   align-self:center; }
 .rst--now{ background:var(--ink); color:var(--surface); border-color:var(--ink); }
-.rlab h3{ font-size:19px; font-weight:600; letter-spacing:-.02em; line-height:1.1; color:var(--ink); opacity:0; }
-.rsum{ font-size:13.5px; color:var(--ink-2); margin-top:7px; line-height:1.5; max-width:440px; opacity:0; }
+.rlab h3{ font-size:25px; font-weight:600; letter-spacing:-.022em; line-height:1.08; color:var(--ink); opacity:0; }
+.rsum{ font-size:14.5px; color:var(--ink-2); margin-top:9px; line-height:1.55; max-width:460px; opacity:0; }
 .rout{ font-size:10.5px; font-weight:600; letter-spacing:.09em; text-transform:uppercase; color:var(--ink-faint); margin-top:12px; opacity:0; }
 @media (max-width:700px){
   /* the scrub is a desktop set piece; phones get the flat list */
@@ -1866,8 +1866,9 @@ faqItems.forEach(item => {
     [424.4, 358.7, 475.7, 241.3],
     [468.4, 358.7, 519.7, 241.3],
   ];
-  // pose C: vertical bars staircased down-right; the first lands on the page margin
-  const STEP_X = 60, START_Y = 75, STEP_Y = 175, BAR = 64;
+  // pose C: vertical bars staircased down-right; the first lands on the page margin,
+  // the last block ends on the right margin, and each bar runs the height of its own text
+  const START_Y = 46, STEP_Y = 196, GAP_X = 30;
   function render(p){
     if (flat.matches) return;
     const t = ease(seg(p, 0.06, 0.52));
@@ -1877,17 +1878,24 @@ faqItems.forEach(item => {
     const r = svg.getBoundingClientRect();
     const scale = Math.min(r.width / 900, r.height / 620) || 1;
     const ox = (r.width - 900 * scale) / 2, oy = (r.height - 620 * scale) / 2;
-    const baseX = (wrapRef.getBoundingClientRect().left + 32 - r.left - ox) / scale + 8;
+    const wr = wrapRef.getBoundingClientRect();
+    const baseX = (wr.left + 32 - r.left - ox) / scale + 8;
+    // the staircase spans the page's own margins: first bar left, last block flush right
+    const rightLimit = (wr.right - 32 - r.left - ox) / scale;
+    const labW = labs[0].offsetWidth / scale;
+    const STEP_X = clamp((rightLimit - labW - GAP_X - baseX) / 2, 52, 268);
     for (let i = 0; i < 3; i++){
       const cx = baseX + i * STEP_X, cy = START_Y + i * STEP_Y;
-      const Ci = [cx, cy, cx, cy + BAR];
+      // the bar spans its block: measured height back into viewBox units, inset by the cap radius
+      const h = labs[i].offsetHeight / scale;
+      const Ci = [cx, cy + w / 2, cx, cy + Math.max(w, h) - w / 2];
       const q = A[i].map((v, k) => lerp(v, Ci[k], t));
       bars[i].setAttribute('x1', q[0]); bars[i].setAttribute('y1', q[1]);
       bars[i].setAttribute('x2', q[2]); bars[i].setAttribute('y2', q[3]);
       bars[i].setAttribute('stroke-width', w);
     }
     labs.forEach((el, i) => {
-      el.style.transform = 'translate(' + (ox + (baseX + i * STEP_X + 26) * scale) + 'px,' + (oy + (START_Y + i * STEP_Y - 3) * scale) + 'px)';
+      el.style.transform = 'translate(' + (ox + (baseX + i * STEP_X + GAP_X) * scale) + 'px,' + (oy + (START_Y + i * STEP_Y) * scale) + 'px)';
       el.style.opacity = kickIn;
       el.querySelector('h3').style.opacity = detailIn;
       el.querySelector('.rsum').style.opacity = detailIn;
