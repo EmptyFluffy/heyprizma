@@ -1496,24 +1496,32 @@ footer{
 
     <div class="faq" data-reveal id="faq">
       <div class="faq-item">
+        <button class="faq-q" aria-expanded="false">We already do this in a spreadsheet.<span class="plus">+</span></button>
+        <div class="faq-a"><div class="faq-a-inner"><p>Then the math will feel familiar, because a spreadsheet is deterministic too. What it cannot do is propagate: change one assignment and nothing downstream recalculates. Prizma keeps the assumption-first arithmetic and adds the connections, so one change updates capacity, fees and risk across the whole firm, for everyone, at once.</p></div></div>
+      </div>
+      <div class="faq-item">
         <button class="faq-q" aria-expanded="false">Where does the data come from?<span class="plus">+</span></button>
         <div class="faq-a"><div class="faq-a-inner"><p>Your team list, salaries, project fees and who works on what. No integrations required to start: a firm of fifteen people is modeled in an afternoon, and the model stays useful from day one.</p></div></div>
+      </div>
+      <div class="faq-item">
+        <button class="faq-q" aria-expanded="false">We don&rsquo;t actually know our own numbers.<span class="plus">+</span></button>
+        <div class="faq-a"><div class="faq-a-inner"><p>Neither do most firms: 42% cannot report their own net margin. Prizma does not need calibrated truth to start. You give rough figures, the model makes them explicit and live, and they sharpen as real numbers replace guesses. Assumptions you can see beat certainty you do not have.</p></div></div>
       </div>
       <div class="faq-item">
         <button class="faq-q" aria-expanded="false">Do we need timesheets?<span class="plus">+</span></button>
         <div class="faq-a"><div class="faq-a-inner"><p>No. The model starts from what the firm already knows: who works here, what each hour truly costs, what each project pays. Tools built on timesheets need months of history before a forecast means anything; Prizma answers on day one. If you keep timesheets, they calibrate the model over time. They are never required.</p></div></div>
       </div>
       <div class="faq-item">
+        <button class="faq-q" aria-expanded="false">How is this different from project management software?<span class="plus">+</span></button>
+        <div class="faq-a"><div class="faq-a-inner"><p>PM and accounting tools are systems of record: they tell you what already happened. Prizma is a decision layer: it tells you whether the next commitment fits, whether it pays, and what it costs the rest of the firm. Keep whatever you invoice with; Prizma sits beside it, not instead of it.</p></div></div>
+      </div>
+      <div class="faq-item">
+        <button class="faq-q" aria-expanded="false">Who sees our salaries?<span class="plus">+</span></button>
+        <div class="faq-a"><div class="faq-a-inner"><p>Salary data stays inside your firm. Pilots run on a private instance, nothing is used to train anything, and the benchmark layer (Prizma Z) only ever works with aggregated, anonymized figures from firms that opt in.</p></div></div>
+      </div>
+      <div class="faq-item">
         <button class="faq-q" aria-expanded="false">Is this AI?<span class="plus">+</span></button>
         <div class="faq-a"><div class="faq-a-inner"><p>Both, in the right order. The engine is deterministic: plain arithmetic on the connections you draw, with nothing predicted behind your back. An agentic layer sits on top of that model to run scenarios, surface risks and prep decisions. Agents work with the numbers; they never make them up.</p></div></div>
-      </div>
-      <div class="faq-item">
-        <button class="faq-q" aria-expanded="false">How is this different from project management software?<span class="plus">+</span></button>
-        <div class="faq-a"><div class="faq-a-inner"><p>PM and accounting tools are systems of record: they tell you what already happened. Prizma is a decision layer: it tells you whether the next commitment fits, whether it pays, and what it costs the rest of the firm.</p></div></div>
-      </div>
-      <div class="faq-item">
-        <button class="faq-q" aria-expanded="false">We already do this in a spreadsheet.<span class="plus">+</span></button>
-        <div class="faq-a"><div class="faq-a-inner"><p>Then the math will feel familiar, because a spreadsheet is deterministic too. What it cannot do is propagate: change one assignment and nothing downstream recalculates. Prizma keeps the assumption-first arithmetic and adds the connections, so one change updates capacity, fees and risk across the whole firm, for everyone, at once.</p></div></div>
       </div>
       <div class="faq-item">
         <button class="faq-q" aria-expanded="false">What does a pilot look like?<span class="plus">+</span></button>
