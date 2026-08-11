@@ -843,6 +843,14 @@ button{ font-family:inherit; }
   text-wrap:balance;
 }
 .dark h2 .dim{ color:var(--paper-faint); }
+.vs-facts{
+  display:flex; flex-wrap:wrap; align-items:baseline; gap:10px 36px;
+  margin:34px 0 10px;
+  font-size:13.5px; color:var(--paper-faint);
+}
+.vs-facts b{ font-family:var(--mono); font-size:17px; font-weight:500; color:var(--paper); margin-right:7px; }
+.vs-facts i{ font-style:normal; width:100%; font-family:var(--mono); font-size:9.5px;
+  letter-spacing:.08em; text-transform:uppercase; color:var(--paper-faint); opacity:.65; margin-top:2px; }
 .vs{
   margin-top:72px;
   display:grid; grid-template-columns:1fr 1fr;
@@ -1360,6 +1368,13 @@ footer{
     <p class="eyebrow" style="margin-bottom:24px;">( 03 ) · Why not a PM tool</p>
     <h2>Management software records what happened. <span class="dim">Prizma computes what happens next.</span></h2>
 
+    <div class="vs-facts">
+      <span><b>42%</b> of firms cannot report their own net profit margin</span>
+      <span><b>50%</b> assign staff on intuition alone</span>
+      <span><b>68%</b> run firm finances on spreadsheets</span>
+      <i>Factor A/E benchmark 2026 &middot; RIBA poll 2026</i>
+    </div>
+
     <div class="vs">
       <div class="vs-col">
         <span class="vs-label">They record the past</span>
@@ -1415,7 +1430,7 @@ footer{
 <section class="section" id="instrument">
   <div class="wrap">
     <div class="section-head" data-reveal>
-      <p class="eyebrow">( 03 ) &middot; The instrument</p>
+      <p class="eyebrow">( 04 ) &middot; The instrument</p>
       <h2>The model is the workspace, <span class="dim">not a report.</span></h2>
     </div>
 
@@ -1439,7 +1454,7 @@ footer{
 <section class="section" id="math">
   <div class="wrap">
     <div class="section-head" data-reveal>
-      <p class="eyebrow">( 04 ) · The math</p>
+      <p class="eyebrow">( 05 ) · The math</p>
       <h2>Deterministic underneath. <span class="dim">Agentic on top.</span></h2>
       <p>The engine is plain arithmetic on data your firm already has: who works where, what each hour truly costs, what each project pays. Agents sit on top of that model to run scenarios, flag risk and prep decisions; they operate the arithmetic, never invent it. Every number traces back to a connection you can point at.</p>
     </div>
@@ -1469,7 +1484,7 @@ footer{
 <section class="section">
   <div class="wrap-narrow">
     <div class="section-head" data-reveal style="margin-bottom:44px;">
-      <p class="eyebrow">( 05 ) · Questions</p>
+      <p class="eyebrow">( 06 ) · Questions</p>
       <h2>Before you ask.</h2>
     </div>
 
@@ -1479,12 +1494,20 @@ footer{
         <div class="faq-a"><div class="faq-a-inner"><p>Your team list, salaries, project fees and who works on what. No integrations required to start: a firm of fifteen people is modeled in an afternoon, and the model stays useful from day one.</p></div></div>
       </div>
       <div class="faq-item">
+        <button class="faq-q" aria-expanded="false">Do we need timesheets?<span class="plus">+</span></button>
+        <div class="faq-a"><div class="faq-a-inner"><p>No. The model starts from what the firm already knows: who works here, what each hour truly costs, what each project pays. Tools built on timesheets need months of history before a forecast means anything; Prizma answers on day one. If you keep timesheets, they calibrate the model over time. They are never required.</p></div></div>
+      </div>
+      <div class="faq-item">
         <button class="faq-q" aria-expanded="false">Is this AI?<span class="plus">+</span></button>
         <div class="faq-a"><div class="faq-a-inner"><p>Both, in the right order. The engine is deterministic: plain arithmetic on the connections you draw, with nothing predicted behind your back. An agentic layer sits on top of that model to run scenarios, surface risks and prep decisions. Agents work with the numbers; they never make them up.</p></div></div>
       </div>
       <div class="faq-item">
         <button class="faq-q" aria-expanded="false">How is this different from project management software?<span class="plus">+</span></button>
         <div class="faq-a"><div class="faq-a-inner"><p>PM and accounting tools are systems of record: they tell you what already happened. Prizma is a decision layer: it tells you whether the next commitment fits, whether it pays, and what it costs the rest of the firm.</p></div></div>
+      </div>
+      <div class="faq-item">
+        <button class="faq-q" aria-expanded="false">We already do this in a spreadsheet.<span class="plus">+</span></button>
+        <div class="faq-a"><div class="faq-a-inner"><p>Then the math will feel familiar, because a spreadsheet is deterministic too. What it cannot do is propagate: change one assignment and nothing downstream recalculates. Prizma keeps the assumption-first arithmetic and adds the connections, so one change updates capacity, fees and risk across the whole firm, for everyone, at once.</p></div></div>
       </div>
       <div class="faq-item">
         <button class="faq-q" aria-expanded="false">What does a pilot look like?<span class="plus">+</span></button>
@@ -1499,7 +1522,7 @@ footer{
   <div class="cta-atmosphere" aria-hidden="true"></div>
   <div class="cta-inner wrap" data-reveal>
     <h2>Draw your firm on the canvas.</h2>
-    <p>Pilots for firms of 5–100 people · Four weeks · Your real data</p>
+    <p>Pilots for firms of 5–100 people · Four weeks · Your real data · No timesheets</p>
     <div class="btn-row">
       <a class="btn btn-ink btn-lg" href="mailto:contact@heyprizma.com?subject=Pilot%20enquiry">Book a pilot</a>
       <a class="btn btn-ghost btn-lg" href="#questions">Read the five questions</a>
