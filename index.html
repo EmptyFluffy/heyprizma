@@ -303,6 +303,7 @@ button{ font-family:inherit; }
 .stage-wrap{
   position:relative;
   width:100%;
+  scroll-margin-top:76px;
 }
 .stage{
   position:absolute; top:0; left:0;
@@ -573,8 +574,8 @@ button{ font-family:inherit; }
 .pz-slider label{ display:flex; justify-content:space-between; align-items:baseline;
   font-size:9.5px; color:var(--ink-dim); margin-bottom:6px; }
 .pz-slider label b{ font-size:10px; font-weight:500; color:var(--ink); }
-.pz-slider input{ width:100%; height:4px; -webkit-appearance:none; appearance:none; background:var(--line);
-  border-radius:999px; outline:none; cursor:pointer; }
+.pz-slider input{ display:block; width:100%; height:4px; -webkit-appearance:none; appearance:none;
+  background:var(--line); border-radius:999px; outline:none; cursor:pointer; }
 .pz-slider input::-webkit-slider-thumb{ -webkit-appearance:none; width:13px; height:13px; border-radius:50%;
   background:var(--blue); border:2px solid var(--surface); box-shadow:0 1px 4px oklch(24% 0.012 90 / .3); }
 .pz-slider input::-moz-range-thumb{ width:13px; height:13px; border-radius:50%; background:var(--blue);
@@ -631,6 +632,50 @@ button{ font-family:inherit; }
 .pz-canvas-hint{ margin-top:18px; text-align:center; font-family:var(--mono); font-size:9.5px;
   letter-spacing:.12em; text-transform:uppercase; color:var(--ink-faint); }
 @media (max-width:840px){ .pz-canvas-hint{ display:none; } }
+
+/* ---------- phones: the model stacks, full size, no sideways pan ---------- */
+@media (max-width:700px){
+  .canvas{ margin-top:52px; }
+  .stage-wrap{ overflow-x:visible !important; height:auto !important; min-width:0 !important; }
+  .stage{ position:static !important; width:auto !important; height:auto !important;
+    transform:none !important; left:auto !important;
+    display:flex; flex-direction:column; gap:26px; }
+  .stage .edges{ display:none; }
+  .pz-node, .pz-sticky{ position:relative !important; left:auto !important; top:auto !important;
+    width:auto !important; max-width:none !important; }
+  .pz-sticky{ order:-1; }
+  .pz-node::after{ content:""; position:absolute; left:50%; bottom:-26px;
+    width:1px; height:26px; background:var(--line-2); }
+  #n-firm::after{ display:none; }
+  .pz-port{ display:none; }
+  .pz-metric{ font-size:30px; }
+
+  /* a thumb needs something to grab, and the track needs to show its fill */
+  .pz-slider input{ height:18px; background:transparent; }
+  .pz-slider input::-webkit-slider-runnable-track{ height:4px; border-radius:999px; background:var(--line); }
+  .pz-slider input::-webkit-slider-thumb{ margin-top:-7px; width:18px; height:18px; }
+  .pz-slider input::-moz-range-track{ height:4px; border-radius:999px; background:var(--line); }
+  .pz-slider input::-moz-range-thumb{ width:18px; height:18px; }
+
+  /* one title axis down the stack: icon and pill pinned, name centred on the card */
+  .pz-head{ position:relative; }
+  .pz-chip{ position:absolute; left:13px; top:50%; transform:translateY(-50%); }
+  .pz-pill{ position:absolute; right:13px; top:50%; transform:translateY(-50%); }
+  .pz-id{ padding:0 92px; }
+  .pz-who{ text-align:left; }
+
+  /* Mara's connections read as her sheet, not a sixth node */
+  #n-mara{ gap:0; }
+  #n-mara > .pz-card:first-child{ border-radius:var(--r-node) var(--r-node) 0 0; }
+  .pz-sheet{ background:var(--surface-2); box-shadow:none; margin-top:-1px;
+    border-radius:0 0 var(--r-node) var(--r-node); }
+
+  /* prose reads left, and the smallest type comes up off the floor */
+  .pz-sticky-out .say{ text-align:left; }
+  .pz-sect{ font-size:9px; }
+  .pz-who i, .pz-tag{ font-size:8.5px; }
+  .pz-sticky-chips button{ font-size:9px; padding:6px 11px; }
+}
 
 /* ============================================================
    POSITIONING STRIP
@@ -1451,8 +1496,14 @@ window.addEventListener('scroll', onScroll, { passive:true });
 const wrapEl = document.getElementById('stageWrap');
 const stage = document.getElementById('stage');
 const STAGE_W = 1240, STAGE_H = 710;
+const stackQ = matchMedia('(max-width: 700px)');
 function fitStage(){
-  // floor the scale on phones: below it the wrap pans horizontally instead
+  if (stackQ.matches){
+    // phones read the model as a vertical stack; CSS owns the layout, clear our inline styles
+    stage.style.transform = ''; stage.style.left = ''; stage.style.width = '';
+    wrapEl.style.height = ''; wrapEl.style.overflowX = ''; wrapEl.style.minWidth = '';
+    return;
+  }
   const raw = wrapEl.clientWidth / STAGE_W * 0.85;   // graph renders 15% under its fitted size
   const s = Math.max(raw, 0.52);
   stage.style.transform = `scale(${s})`;
@@ -1590,6 +1641,7 @@ faqItems.forEach(item => {
     return [x, y];
   }
   function drawEdges(){
+    if (matchMedia('(max-width: 700px)').matches) return;
     for (const [id, a, b] of EDGES){
       const pa = port(a), pb = port(b), path = $(id);
       if (!pa || !pb || !path) continue;
@@ -1660,7 +1712,7 @@ faqItems.forEach(item => {
       deltas: [
         ['Harbor \u00b7 burn', '200% \u2192 151%', 'g'],
         ['Lumen \u00b7 burn', '73% \u2192 86%', ''],
-        ['Mara \u00b7 stretch', 'medium \u2192 medium', ''],
+        ['Mara \u00b7 workload', 'unchanged', ''],
       ],
       actions: true,
     },
