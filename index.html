@@ -3,8 +3,33 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>prizma · Know what your firm can absorb</title>
-<meta name="description" content="Prizma is the decision layer for architecture firms. A live model of your practice that answers: what can we safely absorb next?">
+<title>Prizma | Know what your firm can absorb</title>
+<meta name="description" content="Prizma is a live model of your architecture practice. Every commitment recalculates capacity, fees and risk across the whole firm.">
+<link rel="canonical" href="https://heyprizma.com/">
+<meta name="theme-color" content="#faf9f6">
+<meta name="color-scheme" content="light">
+
+<link rel="icon" href="/favicon.ico" sizes="32x32">
+<link rel="icon" href="/favicon-32.png" type="image/png" sizes="32x32">
+<link rel="apple-touch-icon" href="/apple-touch-icon.png">
+
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="Prizma">
+<meta property="og:url" content="https://heyprizma.com/">
+<meta property="og:title" content="Prizma | Know what your firm can absorb">
+<meta property="og:description" content="A live model of your architecture practice. Every commitment recalculates capacity, fees and risk across the whole firm, so you know what you can absorb before you say yes.">
+<meta property="og:image" content="https://heyprizma.com/assets/og.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:image:type" content="image/png">
+<meta property="og:image:alt" content="Prizma: know what your firm can absorb. Before you say yes.">
+<meta property="og:locale" content="en_US">
+
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Prizma | Know what your firm can absorb">
+<meta name="twitter:description" content="A live model of your architecture practice. Every commitment recalculates capacity, fees and risk across the whole firm.">
+<meta name="twitter:image" content="https://heyprizma.com/assets/og.png">
+<meta name="twitter:image:alt" content="Prizma: know what your firm can absorb. Before you say yes.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Geist:wght@100..900&family=Geist+Mono:wght@100..900&display=swap" rel="stylesheet">
@@ -574,9 +599,11 @@ button{ font-family:inherit; }
 .pz-slider label{ display:flex; justify-content:space-between; align-items:baseline;
   font-size:9.5px; color:var(--ink-dim); margin-bottom:6px; }
 .pz-slider label b{ font-size:10px; font-weight:500; color:var(--ink); }
-.pz-slider input{ display:block; width:100%; height:4px; -webkit-appearance:none; appearance:none;
-  background:var(--line); border-radius:999px; outline:none; cursor:pointer; }
-.pz-slider input::-webkit-slider-thumb{ -webkit-appearance:none; width:13px; height:13px; border-radius:50%;
+.pz-slider input{ display:block; width:100%; height:16px; -webkit-appearance:none; appearance:none;
+  background:transparent; outline:none; cursor:pointer; }
+.pz-slider input::-webkit-slider-runnable-track{ height:4px; border-radius:999px; background:var(--line); }
+.pz-slider input::-moz-range-track{ height:4px; border-radius:999px; background:var(--line); }
+.pz-slider input::-webkit-slider-thumb{ -webkit-appearance:none; margin-top:-4.5px; width:13px; height:13px; border-radius:50%;
   background:var(--blue); border:2px solid var(--surface); box-shadow:0 1px 4px oklch(24% 0.012 90 / .3); }
 .pz-slider input::-moz-range-thumb{ width:13px; height:13px; border-radius:50%; background:var(--blue);
   border:2px solid var(--surface); box-shadow:0 1px 4px oklch(24% 0.012 90 / .3); }
@@ -650,11 +677,9 @@ button{ font-family:inherit; }
   .pz-port{ display:none; }
   .pz-metric{ font-size:30px; }
 
-  /* a thumb needs something to grab, and the track needs to show its fill */
-  .pz-slider input{ height:18px; background:transparent; }
-  .pz-slider input::-webkit-slider-runnable-track{ height:4px; border-radius:999px; background:var(--line); }
+  /* fatter thumb for thumbs */
+  .pz-slider input{ height:20px; }
   .pz-slider input::-webkit-slider-thumb{ margin-top:-7px; width:18px; height:18px; }
-  .pz-slider input::-moz-range-track{ height:4px; border-radius:999px; background:var(--line); }
   .pz-slider input::-moz-range-thumb{ width:18px; height:18px; }
 
   /* one title axis down the stack: icon and pill pinned, name centred on the card */
@@ -675,6 +700,14 @@ button{ font-family:inherit; }
   .pz-sect{ font-size:9px; }
   .pz-who i, .pz-tag{ font-size:8.5px; }
   .pz-sticky-chips button{ font-size:9px; padding:6px 11px; }
+}
+
+/* ---------- very narrow phones: the head flows instead of centring ---------- */
+@media (max-width:380px){
+  .pz-chip, .pz-pill{ position:static; transform:none; }
+  .pz-id{ padding:0; }
+  .pz-name{ font-size:14px; }
+  .pz-who b{ font-size:10px; }
 }
 
 /* ============================================================
@@ -912,6 +945,9 @@ button{ font-family:inherit; }
   overflow-x:auto;
   white-space:nowrap;
 }
+.formula{ position:relative; }
+.formula.is-scrollable{ -webkit-mask-image:linear-gradient(to right, #000 86%, transparent 100%);
+  mask-image:linear-gradient(to right, #000 86%, transparent 100%); }
 .formula b{ color:var(--ink); font-weight:500; }
 .formula .c{ color:var(--ink-faint); }
 @media (max-width:840px){
@@ -1797,6 +1833,17 @@ faqItems.forEach(item => {
   if (!matchMedia('(prefers-reduced-motion: reduce)').matches){
     setTimeout(() => { if (!idleStopped) idleRaf = requestAnimationFrame(idleTick); }, 1900);
   }
+})();
+
+/* the formula scrolls sideways on narrow screens; fade the edge only while there is more to see */
+(function(){
+  const f = document.querySelector('.formula');
+  if (!f) return;
+  const sync = () => f.classList.toggle('is-scrollable',
+    f.scrollWidth - f.clientWidth - f.scrollLeft > 4);
+  f.addEventListener('scroll', sync, { passive: true });
+  window.addEventListener('resize', sync, { passive: true });
+  sync();
 })();
 
 /* roadmap: scroll scrub, pose A (the mark) to the margin-aligned staircase */
