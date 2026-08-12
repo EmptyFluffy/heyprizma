@@ -254,24 +254,25 @@ button{ font-family:inherit; }
 
 .btn{
   display:inline-flex; align-items:center; gap:8px;
-  font-size:13.5px; font-weight:530;
-  padding:9px 20px;
+  font-size:13.5px; font-weight:480;
+  padding:10px 22px;
   border-radius:999px;
   border:1px solid transparent;
   cursor:pointer;
-  transition:transform .2s var(--ease), background .2s, border-color .2s, color .2s;
-  letter-spacing:0.005em;
+  transition:background .2s, border-color .2s, box-shadow .2s;
+  letter-spacing:0;
 }
 .btn-ink{
   background:var(--ink); color:var(--paper);
 }
-.btn-ink:hover{ background:oklch(30% 0.012 90); transform:translateY(-1px); }
+.btn-ink:hover{ background:oklch(29% 0.012 90); }
 .btn-ghost{
-  background:transparent; color:var(--ink);
-  border-color:var(--line-2);
+  background:var(--surface); color:var(--ink);
+  border-color:oklch(24% 0.012 90 / .16);
+  box-shadow:0 2px 5px oklch(24% 0.012 90 / .06);
 }
-.btn-ghost:hover{ border-color:var(--ink-faint); transform:translateY(-1px); }
-.btn-lg{ font-size:14.5px; padding:12px 26px; }
+.btn-ghost:hover{ border-color:oklch(24% 0.012 90 / .3); box-shadow:0 2px 7px oklch(24% 0.012 90 / .09); }
+.btn-lg{ font-size:14.5px; padding:13px 28px; }
 
 @media (max-width:840px){
   .nav-links{ display:none; }
@@ -1132,7 +1133,7 @@ footer{
       <a href="#math">Math</a>
     </div>
     <div class="nav-cta">
-      <a class="btn btn-ink" href="mailto:contact@heyprizma.com?subject=Pilot%20enquiry">Book a pilot</a>
+      <a class="btn btn-ink" href="mailto:contact@heyprizma.com?subject=Pilot%20enquiry">Contact sales</a>
     </div>
   </div>
 </nav>
@@ -1582,7 +1583,7 @@ footer{
     <h2>Draw your firm on the canvas.</h2>
     <p>Pilots for firms of 5–100 people · Four weeks · Your real data · No timesheets</p>
     <div class="btn-row">
-      <a class="btn btn-ink btn-lg" href="mailto:contact@heyprizma.com?subject=Pilot%20enquiry">Book a pilot</a>
+      <a class="btn btn-ink btn-lg" href="mailto:contact@heyprizma.com?subject=Pilot%20enquiry">Email the founder</a>
       <a class="btn btn-ghost btn-lg" href="#questions">Read the five questions</a>
     </div>
   </div>
