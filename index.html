@@ -210,6 +210,7 @@ button{ font-family:inherit; }
   border:1px solid var(--line-2); border-radius:12px; background:var(--surface);
   box-shadow:0 1px 2px oklch(24% 0.012 90 / .06), 0 16px 40px -22px oklch(24% 0.012 90 / .35); }
 .shot-b{ margin-top:60px; }
+.shots-pair{ display:grid; grid-template-columns:1fr 1fr; gap:22px; margin-top:60px; align-items:start; }
 .shot-cap{ display:block; margin:0 2px 12px; }
 .shot-cap h4{ font-size:15.5px; font-weight:600; letter-spacing:-.01em; }
 .shot-cap p{ font-size:14px; line-height:1.55; color:var(--ink-dim); margin-top:4px; max-width:560px; }
@@ -217,6 +218,7 @@ button{ font-family:inherit; }
   .shots-tray{ padding:16px; border-radius:18px; }
   .shot img{ border-radius:9px; }
   .shot-b{ margin-top:44px; }
+  .shots-pair{ grid-template-columns:1fr; gap:44px; margin-top:44px; }
   .shot-cap{ margin-bottom:9px; }
   .shot-cap h4{ font-size:15px; }
   .shot-cap p{ font-size:13.5px; }
@@ -1482,6 +1484,18 @@ footer{
         <img src="assets/effort-eq.jpg" width="2000" height="1089" loading="lazy"
              alt="The Effort EQ panel rebalancing one person&#39;s hours across three projects, with burn and room recomputing on each project card">
       </figure>
+      <div class="shots-pair">
+        <figure class="shot">
+          <figcaption class="shot-cap"><h4>New project intake</h4><p>Fee, phases and dates in one place. The phase timeline drafts from the typology and stays editable.</p></figcaption>
+          <img src="assets/new-project.jpg" width="1400" height="791" loading="lazy"
+               alt="The new project modal: fee basis, typology and dates on the left, the drafted phase timeline on the right">
+        </figure>
+        <figure class="shot">
+          <figcaption class="shot-cap"><h4>Effort forecast &middot; Prizma Y</h4><p>The new project&rsquo;s load lands on the firm&rsquo;s existing curve, against the capacity ceiling. In build with the pilot firms.</p></figcaption>
+          <img src="assets/effort-forecast.jpg" width="1400" height="790" loading="lazy"
+               alt="The effort forecast: stacked project load with the new project bracketed by drag handles, against the firm&rsquo;s capacity ceiling">
+        </figure>
+      </div>
     </div>
   </div>
 </section>
