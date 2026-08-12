@@ -197,6 +197,27 @@ button{ font-family:inherit; }
   .rlab h3{ width:100%; }
 }
 
+.proof{ margin-top:52px; padding-top:34px; padding-bottom:0; border-top:1px solid var(--ink-line); }
+.proof-eq{ font-family:var(--mono); font-size:clamp(22px, 3.2vw, 34px); letter-spacing:-0.01em;
+  color:var(--paper); }
+.proof p{ margin-top:12px; font-size:15.5px; color:var(--paper-dim); max-width:60ch; }
+
+.adapt{ border-top:1px solid var(--line); }
+.adapt-row{ display:grid; grid-template-columns:128px 78px 1fr; gap:22px; align-items:baseline;
+  padding:26px 0; border-bottom:1px solid var(--line); }
+.adapt-k{ font-size:20px; font-weight:600; letter-spacing:-0.015em; color:var(--ink); }
+.adapt-own{ justify-self:start; font-size:9.5px; font-weight:600; letter-spacing:.09em;
+  text-transform:uppercase; padding:3px 10px; border-radius:999px;
+  border:1px solid var(--line-2); color:var(--ink-dim); }
+.adapt-own.ours{ background:var(--ink); border-color:var(--ink); color:var(--surface); }
+.adapt-row p{ font-size:14.5px; line-height:1.6; color:var(--ink-2); max-width:90ch; }
+.adapt-note{ margin-top:30px; font-size:15px; color:var(--ink-dim); max-width:64ch; }
+@media (max-width:840px){
+  .adapt-row{ grid-template-columns:1fr; gap:9px; padding:22px 0; }
+  .adapt-k{ font-size:18px; }
+  .proof{ margin-top:40px; }
+}
+
 /* ============================================================
    THE INSTRUMENT: the two product windows, whole, in a stone tray
    ============================================================ */
@@ -1321,7 +1342,7 @@ footer{
   <div class="strip-inner">
     <span>Deterministic core, agentic layer</span>
     <span>Hours are derived, never entered</span>
-    <span>Every number traceable</span>
+    <span>Open any number</span>
     <span>Data your firm already has</span>
   </div>
 </div>
@@ -1438,6 +1459,7 @@ footer{
           <li>Invoices, after the money moved</li>
           <li>Utilization reports, four weeks late</li>
           <li>Post-mortems on projects that lost money</li>
+          <li>A module for every question, and a month to learn them</li>
         </ul>
       </div>
       <div class="vs-col decide">
@@ -1447,8 +1469,14 @@ footer{
           <li>Does it pay with these exact people</li>
           <li>Who breaks if one person leaves</li>
           <li>What can move between teams, and what can't</li>
+          <li>One model, one canvas, every question</li>
         </ul>
       </div>
+    </div>
+
+    <div class="proof" data-reveal>
+      <div class="proof-eq">robust &ne; complicated</div>
+      <p>Four things you place. One gesture. Every figure on this page is derived from them.</p>
     </div>
   </div>
 
@@ -1520,8 +1548,8 @@ footer{
         <p>Numerators and denominators aggregate across the firm and divide once, at the end. No average of averages, ever.</p>
       </div>
       <div class="principle" data-reveal>
-        <h4>Constants are defaults, not truth.</h4>
-        <p>Every threshold and penalty is a configurable assumption, shown and explained. You calibrate them to your practice.</p>
+        <h4>The constants are yours.</h4>
+        <p>Every threshold and penalty is an assumption you can see and change. We fix the formulas. We never fix the figures you feed them.</p>
       </div>
     </div>
 
@@ -1531,11 +1559,47 @@ footer{
   </div>
 </section>
 
+<!-- ================= ADAPTABILITY ================= -->
+<section class="section" id="adaptability">
+  <div class="wrap">
+    <div class="section-head" data-reveal>
+      <p class="eyebrow">( 06 ) &middot; Adaptability</p>
+      <h2>Your practice does not run like the last one we modeled. <span class="dim">It should not have to.</span></h2>
+      <p>A model that cannot bend describes the firm it was built for, and no other. A model that bends anywhere describes nothing. The line sits in one place: the arithmetic is ours, everything it operates on is yours.</p>
+    </div>
+
+    <div class="adapt" data-reveal>
+      <div class="adapt-row">
+        <span class="adapt-k">Laws</span>
+        <span class="adapt-own ours">Ours</span>
+        <p>Sums aggregate and divide once. Ratios are never averaged. Fixed on purpose: it is what makes a figure mean the same thing in your firm as in any other.</p>
+      </div>
+      <div class="adapt-row">
+        <span class="adapt-k">Assumptions</span>
+        <span class="adapt-own">Yours</span>
+        <p>Every threshold, penalty and rate is an assumption you can see and change. Change one and the whole firm recomputes in front of you.</p>
+      </div>
+      <div class="adapt-row">
+        <span class="adapt-k">Vocabulary</span>
+        <span class="adapt-own">Yours</span>
+        <p>The model describes things by what they contribute: hours, cost, revenue, demand, scope. If your office has something our list does not, you can still describe it.</p>
+      </div>
+      <div class="adapt-row">
+        <span class="adapt-k">Compositions</span>
+        <span class="adapt-own">Yours</span>
+        <p>Build the figures we did not think of, from quantities the model already computes. They sit beside ours, marked as yours.</p>
+      </div>
+    </div>
+
+    <p class="adapt-note" data-reveal>If Friday afternoons belong to the studio, the model should know that. Finding the things our list is missing is what the pilots are for.</p>
+  </div>
+</section>
+
 <!-- ================= FAQ ================= -->
 <section class="section">
   <div class="wrap-narrow">
     <div class="section-head" data-reveal style="margin-bottom:44px;">
-      <p class="eyebrow">( 06 ) · Questions</p>
+      <p class="eyebrow">( 07 ) · Questions</p>
       <h2>Before you ask.</h2>
     </div>
 
@@ -1559,6 +1623,10 @@ footer{
       <div class="faq-item">
         <button class="faq-q" aria-expanded="false">How is this different from project management software?<span class="plus">+</span></button>
         <div class="faq-a"><div class="faq-a-inner"><p>PM and accounting tools are systems of record: they tell you what already happened. Prizma is a decision layer: it tells you whether the next commitment fits, whether it pays, and what it costs the rest of the firm. Keep whatever you invoice with; Prizma sits beside it, not instead of it.</p></div></div>
+      </div>
+      <div class="faq-item">
+        <button class="faq-q" aria-expanded="false">Does it assume our firm works like everyone else&rsquo;s?<span class="plus">+</span></button>
+        <div class="faq-a"><div class="faq-a-inner"><p>No, and that is a design decision rather than a courtesy. The arithmetic is fixed on purpose, so a figure means the same thing in every firm. Everything the arithmetic operates on is yours: the constants, the kinds of things that exist in your office, and any figure you want to build from the ones we compute. Pilots exist partly to find what our list is missing.</p></div></div>
       </div>
       <div class="faq-item">
         <button class="faq-q" aria-expanded="false">Who sees our salaries?<span class="plus">+</span></button>
