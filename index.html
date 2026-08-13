@@ -584,7 +584,7 @@ button{ font-family:inherit; }
 .pz-node.pz-flash .pz-card{ border-color:color-mix(in oklch, var(--blue) 55%, var(--line-2));
   box-shadow:0 0 0 1.5px color-mix(in oklch, var(--blue) 30%, transparent), 16px 16px 34px -24px oklch(24% 0.012 90 / .43); }
 
-.pz-card{ position:relative; background:var(--surface); border:1px solid var(--line-2);
+.pz-card{ position:relative; text-align:left; background:var(--surface); border:1px solid var(--line-2);
   border-radius:var(--r-node);
   box-shadow:1px 1px 2px oklch(24% 0.012 90 / .034), 16px 16px 34px -24px oklch(24% 0.012 90 / .425);
   transition:border-color .3s var(--ease), box-shadow .3s var(--ease); }
@@ -607,11 +607,11 @@ button{ font-family:inherit; }
   border-color:color-mix(in oklch, var(--blue) 30%, transparent); }
 .pz-div{ height:1px; background:var(--line); }
 .pz-body{ padding:12px 13px 13px; }
-.pz-label{ font-size:10px; color:var(--ink-dim); margin-bottom:3px; }
-.pz-metric{ font-family:var(--mono); font-variant-numeric:tabular-nums; font-size:27px; font-weight:500;
+.pz-label{ font-size:10px; color:var(--ink-dim); margin-bottom:3px; text-align:center; }
+.pz-metric{ text-align:center; font-family:var(--mono); font-variant-numeric:tabular-nums; font-size:27px; font-weight:500;
   letter-spacing:-.02em; color:var(--ink); line-height:1; }
 .pz-metric small{ font-family:var(--mono); font-size:10.5px; color:var(--ink-dim); font-weight:400; }
-.pz-band{ margin-top:5px; font-size:10.5px; font-weight:500; color:var(--blue); transition:color .3s; }
+.pz-band{ margin-top:5px; text-align:center; font-size:10.5px; font-weight:500; color:var(--blue); transition:color .3s; }
 .pz-meter{ height:5px; border-radius:4px; background:var(--surface-2); border:1px solid var(--line);
   overflow:hidden; margin-top:10px; }
 .pz-meter i{ display:block; height:100%; border-radius:4px; background:var(--blue);
@@ -693,7 +693,7 @@ button{ font-family:inherit; }
 @keyframes pz-tick{ 30%{ color:var(--blue); } }
 
 /* ============ THE AI STICKY ============ */
-.pz-sticky{ position:absolute; z-index:5; width:242px; cursor:grab;
+.pz-sticky{ position:absolute; z-index:5; text-align:left; width:242px; cursor:grab;
   background:var(--surface); border:1px solid var(--line-2); border-radius:var(--r-node);
   box-shadow:1px 1px 2px oklch(24% 0.012 90 / .034), 16px 16px 34px -24px oklch(24% 0.012 90 / .425);
   padding:12px 13px 13px;
@@ -767,9 +767,10 @@ button{ font-family:inherit; }
   .pz-chip{ position:absolute; left:13px; top:50%; transform:translateY(-50%); }
   .pz-pill{ position:absolute; right:13px; top:50%; transform:translateY(-50%); }
   .pz-id{ padding:0 92px; }
+  #n-firm .pz-id{ padding-right:24px; }
   .pz-who{ text-align:left; }
 
-  /* Mara's connections read as her sheet, not a sixth node */
+  /* Nora's connections read as her sheet, not a sixth node */
   #n-mara{ gap:0; }
   #n-mara > .pz-card:first-child{ border-radius:var(--r-node) var(--r-node) 0 0; }
   .pz-sheet{ background:var(--surface-2); box-shadow:none; margin-top:-1px;
@@ -1198,13 +1199,13 @@ footer{
             <path class="pz-pulse" id="pulse1" d=""/>
           </svg>
 
-          <!-- STAFF · Mara -->
-          <div class="pz-node" id="n-mara" style="left:56px; top:350px; width:256px;" data-anim="1">
+          <!-- STAFF · Nora -->
+          <div class="pz-node" id="n-mara" style="left:56px; top:350px; width:276px;" data-anim="1">
             <div class="pz-card">
               <span class="pz-port pz-port-out" data-port="mara-out"></span>
               <div class="pz-head">
                 <span class="pz-chip"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"><circle cx="12" cy="8" r="3.6"/><path d="M5 20a7 7 0 0 1 14 0"/></svg></span>
-                <span class="pz-id"><span class="pz-name">Mara Vidal</span><span class="pz-role">Staff</span></span>
+                <span class="pz-id"><span class="pz-name">Nora Bennett</span><span class="pz-role">Architect</span></span>
                 <span class="pz-pill" id="mara-pill">stretch medium</span>
               </div>
               <div class="pz-div"></div>
@@ -1214,7 +1215,7 @@ footer{
                 <div class="pz-band" id="mara-band">support only</div>
                 <div class="pz-slider">
                   <label>hours on Lumen Pavilion <b class="pz-mono" id="mara-lumen-lbl">14.3 h</b></label>
-                  <input type="range" id="mara-lumen" min="4" max="20" step="any" value="14.3" aria-label="Mara's weekly hours on Lumen Pavilion">
+                  <input type="range" id="mara-lumen" min="4" max="20" step="any" value="14.3" aria-label="Nora's weekly hours on Lumen Pavilion">
                 </div>
               </div>
             </div>
@@ -1293,19 +1294,19 @@ footer{
                 <div class="pz-metric"><span id="team-mult">2.24</span><small>x</small></div>
                 <div class="pz-kvs">
                   <div class="pz-kv"><span>stability margin</span><b class="pz-mono" id="team-stab">4.2 h/wk</b></div>
-                  <div class="pz-kv"><span>tightest staff</span><b class="pz-mono">Mara V.</b></div>
+                  <div class="pz-kv"><span>tightest staff</span><b class="pz-mono">Nora B.</b></div>
                 </div>
               </div>
             </div>
           </div>
 
           <!-- FIRM -->
-          <div class="pz-node" id="n-firm" style="left:1020px; top:262px; width:178px;" data-anim="5">
+          <div class="pz-node" id="n-firm" style="left:1020px; top:262px; width:198px;" data-anim="5">
             <div class="pz-card">
               <span class="pz-port pz-port-in" data-port="firm-in"></span>
               <div class="pz-head">
                 <span class="pz-chip"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"><path d="M4 20V9l8-5 8 5v11h-5v-6h-6v6Z"/></svg></span>
-                <span class="pz-id"><span class="pz-name">Atelier Sur</span><span class="pz-role">Studio · Firm</span></span>
+                <span class="pz-id"><span class="pz-name">Northlight Studio</span><span class="pz-role">Studio · Firm</span></span>
               </div>
               <div class="pz-div"></div>
               <div class="pz-body">
@@ -1331,7 +1332,7 @@ footer{
             </div>
             <div class="pz-sticky-chips" id="stickyChips">
               <button data-q="harbor">fix Harbor's burn?</button>
-              <button data-q="mara">if Mara leaves?</button>
+              <button data-q="mara">if Nora leaves?</button>
             </div>
             <div class="pz-sticky-think" id="stickyThink" style="display:none"><i></i><i></i><i></i></div>
             <div class="pz-sticky-out" id="stickyOut" style="display:none"></div>
@@ -1883,11 +1884,11 @@ faqItems.forEach(item => {
   const SCEN = {
     harbor: {
       match: /harbor|fix|burn|over|rebalance/i,
-      say: 'Harbor Baths burns <b>200% of its budget</b>. The model finds 4.0 h of Mara\u2019s Harbor time that Lumen can absorb inside its room, and 2.7 h of DD scope that can move to next phase. Burn drops to <b>151%</b>; the rest is a fee conversation.',
+      say: 'Harbor Baths burns <b>200% of its budget</b>. The model finds 4.0 h of Nora\u2019s Harbor time that Lumen can absorb inside its room, and 2.7 h of DD scope that can move to next phase. Burn drops to <b>151%</b>; the rest is a fee conversation.',
       deltas: [
         ['Harbor \u00b7 burn', '200% \u2192 151%', 'g'],
         ['Lumen \u00b7 burn', '73% \u2192 86%', ''],
-        ['Mara \u00b7 workload', 'unchanged', ''],
+        ['Nora \u00b7 workload', 'unchanged', ''],
       ],
       actions: true,
     },
@@ -1902,8 +1903,8 @@ faqItems.forEach(item => {
       actions: false,
     },
     mara: {
-      match: /mara|leaves|quit|single point|breaks/i,
-      say: 'If <b>Mara leaves</b>: Harbor Baths loses 18.7 h/wk and Lumen Pavilion 14.3 h/wk with no same-typology backfill. Both projects orphan, and survives-losing drops to <b>0</b>. She is the single point of failure.',
+      match: /nora|mara|leaves|quit|single point|breaks/i,
+      say: 'If <b>Nora leaves</b>: Harbor Baths loses 18.7 h/wk and Lumen Pavilion 14.3 h/wk with no same-typology backfill. Both projects orphan, and survives-losing drops to <b>0</b>. She is the single point of failure.',
       deltas: [
         ['Harbor Baths', 'orphaned \u00b7 \u221218.7 h', 'r'],
         ['Lumen Pavilion', '\u221214.3 h/wk', 'r'],
@@ -1941,7 +1942,7 @@ faqItems.forEach(item => {
     }, 950);
   }
   function applyRebalance(){
-    // move 4h of Mara from Harbor to Lumen, park 2.7h of Harbor DD scope
+    // move 4h of Nora from Harbor to Lumen, park 2.7h of Harbor DD scope
     M.harbor.hours.mara = 12.0;
     M.lumen.hours.mara = Math.min(20, M.lumen.hours.mara + 4);
     $('mara-lumen').value = M.lumen.hours.mara;
@@ -2084,7 +2085,7 @@ faqItems.forEach(item => {
       put(620, 330);
       await sleep(450);
 
-      // 1. work Mara's hours lever, there and back
+      // 1. work Nora's hours lever, there and back
       const mara = $('mara-lumen');
       const [tx, ty] = thumbPoint(mara);
       await glide(tx, ty, 950); if (dead) return;
