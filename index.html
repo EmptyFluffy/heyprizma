@@ -202,19 +202,26 @@ button{ font-family:inherit; }
   color:var(--paper); }
 .proof p{ margin-top:12px; font-size:15.5px; color:var(--paper-dim); max-width:60ch; }
 
-.adapt{ border-top:1px solid var(--line); }
-.adapt-row{ display:grid; grid-template-columns:128px 78px 1fr; gap:22px; align-items:baseline;
-  padding:26px 0; border-bottom:1px solid var(--line); }
-.adapt-k{ font-size:20px; font-weight:600; letter-spacing:-0.015em; color:var(--ink); }
-.adapt-own{ justify-self:start; font-size:9.5px; font-weight:600; letter-spacing:.09em;
-  text-transform:uppercase; padding:3px 10px; border-radius:999px;
-  border:1px solid var(--line-2); color:var(--ink-dim); }
-.adapt-own.ours{ background:var(--ink); border-color:var(--ink); color:var(--surface); }
-.adapt-row p{ font-size:14.5px; line-height:1.6; color:var(--ink-2); max-width:90ch; }
+.adapt{ display:grid; grid-template-columns:1fr 1fr; gap:18px; }
+.acard{ background:var(--surface-2); border-radius:6px; padding:30px 32px 34px; }
+.acard--ours{ background:var(--ink); }
+.acard-top{ display:flex; align-items:center; gap:12px; margin-bottom:24px; }
+.acard-icon{ width:34px; height:34px; border-radius:8px; flex:none;
+  display:grid; place-items:center; background:oklch(92.5% 0.005 95); color:var(--ink); }
+.acard--ours .acard-icon{ background:oklch(32% 0.012 90); color:var(--paper); }
+.acard h3{ font-size:23px; font-weight:600; letter-spacing:-0.02em; line-height:1.1;
+  color:var(--ink); margin-bottom:11px; }
+.acard p{ font-size:14.5px; line-height:1.6; color:var(--ink-2); }
+.acard--ours h3{ color:var(--paper); }
+.acard--ours p{ color:var(--paper-dim); }
+.adapt-own{ font-size:9.5px; font-weight:600; letter-spacing:.09em; text-transform:uppercase;
+  padding:3px 10px; border-radius:999px; border:1px solid var(--line-2); color:var(--ink-dim); }
+.adapt-own.ours{ background:var(--paper); border-color:var(--paper); color:var(--ink); }
 .adapt-note{ margin-top:30px; font-size:15px; color:var(--ink-dim); max-width:64ch; }
 @media (max-width:840px){
-  .adapt-row{ grid-template-columns:1fr; gap:9px; padding:22px 0; }
-  .adapt-k{ font-size:18px; }
+  .adapt{ grid-template-columns:1fr; gap:14px; }
+  .acard{ padding:24px 24px 26px; }
+  .acard h3{ font-size:20px; }
   .proof{ margin-top:40px; }
 }
 
@@ -1568,26 +1575,39 @@ footer{
     </div>
 
     <div class="adapt" data-reveal>
-      <div class="adapt-row">
-        <span class="adapt-k">Laws</span>
-        <span class="adapt-own ours">Ours</span>
+      <article class="acard acard--ours">
+        <div class="acard-top">
+          <span class="acard-icon"><svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2.15" stroke-linecap="round" stroke-linejoin="round"><path d="M18 7V4H6l6 8-6 8h12v-3"/></svg></span>
+          <span class="adapt-own ours">Ours</span>
+        </div>
+        <h3>Laws</h3>
         <p>Sums aggregate and divide once. Ratios are never averaged. Fixed on purpose, because it is what makes a figure mean the same thing in your firm as in any other.</p>
-      </div>
-      <div class="adapt-row">
-        <span class="adapt-k">Assumptions</span>
-        <span class="adapt-own">Yours</span>
+      </article>
+      <article class="acard">
+        <div class="acard-top">
+          <span class="acard-icon"><svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><line x1="21" x2="14" y1="4" y2="4"/><line x1="10" x2="3" y1="4" y2="4"/><line x1="21" x2="12" y1="12" y2="12"/><line x1="8" x2="3" y1="12" y2="12"/><line x1="21" x2="16" y1="20" y2="20"/><line x1="12" x2="3" y1="20" y2="20"/><line x1="14" x2="14" y1="2" y2="6"/><line x1="8" x2="8" y1="10" y2="14"/><line x1="16" x2="16" y1="18" y2="22"/></svg></span>
+          <span class="adapt-own ">Yours</span>
+        </div>
+        <h3>Assumptions</h3>
         <p>Every threshold, penalty and rate is an assumption you can see and change. Change one and the whole firm recomputes in front of you.</p>
-      </div>
-      <div class="adapt-row">
-        <span class="adapt-k">Vocabulary</span>
-        <span class="adapt-own">Yours</span>
+      </article>
+      <article class="acard">
+        <div class="acard-top">
+          <span class="acard-icon"><svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><path d="M8.3 10a.7.7 0 0 1-.626-1.079L11.4 3a.7.7 0 0 1 1.198-.043L16.3 8.9a.7.7 0 0 1-.572 1.1Z"/><rect x="3" y="14" width="7" height="7" rx="1"/><circle cx="17.5" cy="17.5" r="3.5"/></svg></span>
+          <span class="adapt-own ">Yours</span>
+        </div>
+        <h3>Vocabulary</h3>
         <p>The model describes things by what they contribute: hours, cost, revenue, demand, scope. If your office has something our list does not, you can still describe it.</p>
-      </div>
-      <div class="adapt-row">
-        <span class="adapt-k">Compositions</span>
-        <span class="adapt-own">Yours</span>
+      </article>
+      <article class="acard">
+        <div class="acard-top">
+          <span class="acard-icon"><svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><path d="M12.83 2.18a2 2 0 0 0-1.66 0L2.6 6.08a1 1 0 0 0 0 1.83l8.58 3.91a2 2 0 0 0 1.66 0l8.58-3.9a1 1 0 0 0 0-1.83Z"/><path d="M22 17.65 12.83 21.8a2 2 0 0 1-1.66 0L2 17.65"/><path d="M22 12.65 12.83 16.8a2 2 0 0 1-1.66 0L2 12.65"/></svg></span>
+          <span class="adapt-own ">Yours</span>
+        </div>
+        <h3>Compositions</h3>
         <p>Build the figures we did not think of, from quantities the model already computes. They sit beside ours, marked as yours.</p>
-      </div>
+      </article>
+    </div>
     </div>
 
     <p class="adapt-note" data-reveal>If Friday afternoons belong to the studio, the model should know that. Finding the things our list is missing is what the pilots are for.</p>
