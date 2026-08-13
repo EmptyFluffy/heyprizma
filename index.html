@@ -1604,40 +1604,48 @@ footer{
 
     <div class="faq" data-reveal id="faq">
       <div class="faq-item">
+        <button class="faq-q" aria-expanded="false">Is this for a firm our size?<span class="plus">+</span></button>
+        <div class="faq-a"><div class="faq-a-inner"><p>Five to a hundred people. Below five, a spreadsheet really is enough, and we will say so. Above a hundred you probably run Deltek and have a finance team, which is a different problem. This fits the firms where one person still decides what the practice takes on and can no longer hold all of it in their head.</p></div></div>
+      </div>
+      <div class="faq-item">
         <button class="faq-q" aria-expanded="false">We already do this in a spreadsheet.<span class="plus">+</span></button>
         <div class="faq-a"><div class="faq-a-inner"><p>Then the math will feel familiar, because a spreadsheet is deterministic too. What it cannot do is propagate. Change one assignment and nothing downstream recalculates. Prizma keeps the assumption-first arithmetic and adds the connections, so one change updates the whole firm at once, for everyone.</p></div></div>
       </div>
       <div class="faq-item">
-        <button class="faq-q" aria-expanded="false">Where does the data come from?<span class="plus">+</span></button>
-        <div class="faq-a"><div class="faq-a-inner"><p>Your team list, salaries, project fees and who works on what. You do not need integrations to start. A firm of fifteen people is modeled in an afternoon, and the model stays useful from day one.</p></div></div>
+        <button class="faq-q" aria-expanded="false">How is this different from the software we already pay for?<span class="plus">+</span></button>
+        <div class="faq-a"><div class="faq-a-inner"><p>Monograph, BQE, Deltek and the rest are systems of record. They tell you what already happened, accurately. Prizma tells you what happens if you say yes to the next project. Keep whatever you invoice with. This sits beside it.</p></div></div>
       </div>
       <div class="faq-item">
-        <button class="faq-q" aria-expanded="false">We don&rsquo;t actually know our own numbers.<span class="plus">+</span></button>
-        <div class="faq-a"><div class="faq-a-inner"><p>Neither do most firms: 42% cannot report their own net margin. Prizma does not need calibrated truth to start. You give rough figures, the model makes them explicit and live, and they sharpen as real numbers replace guesses. Assumptions you can see beat certainty you do not have.</p></div></div>
+        <button class="faq-q" aria-expanded="false">What do you need from us, and how long does it take?<span class="plus">+</span></button>
+        <div class="faq-a"><div class="faq-a-inner"><p>Your team list with rough salaries, your live projects with their fees, and who is working on what. No integrations, no export from another system. A fifteen-person firm takes an afternoon, and most of that afternoon is one conversation about how the office really runs.</p></div></div>
       </div>
       <div class="faq-item">
         <button class="faq-q" aria-expanded="false">Do we need timesheets?<span class="plus">+</span></button>
-        <div class="faq-a"><div class="faq-a-inner"><p>No. The model starts from your team list, your rates and your fees. Tools built on timesheets need months of history before a forecast means anything; Prizma answers on day one. If you keep timesheets, they calibrate the model over time. They are never required.</p></div></div>
+        <div class="faq-a"><div class="faq-a-inner"><p>No. Tools built on timesheets need months of history before a forecast means anything. Prizma starts from your team list, your rates and your fees, and answers on day one. Keep your timesheets if you have them and they will sharpen the model later.</p></div></div>
       </div>
       <div class="faq-item">
-        <button class="faq-q" aria-expanded="false">How is this different from project management software?<span class="plus">+</span></button>
-        <div class="faq-a"><div class="faq-a-inner"><p>PM and accounting tools are systems of record. They tell you what already happened. Prizma is a decision layer. It tells you whether the next commitment fits, whether it pays, and what it costs the rest of the firm. Keep whatever you invoice with; Prizma sits beside it, not instead of it.</p></div></div>
+        <button class="faq-q" aria-expanded="false">We don&rsquo;t actually know our own numbers.<span class="plus">+</span></button>
+        <div class="faq-a"><div class="faq-a-inner"><p>Neither do most firms. 42% cannot report their own net margin. Prizma does not need calibrated truth to start. You give rough figures, the model makes them explicit and live, and they sharpen as real numbers replace guesses. Assumptions you can see beat certainty you do not have.</p></div></div>
       </div>
       <div class="faq-item">
-        <button class="faq-q" aria-expanded="false">Does it assume our firm works like everyone else&rsquo;s?<span class="plus">+</span></button>
-        <div class="faq-a"><div class="faq-a-inner"><p>That is a design decision rather than a courtesy. The arithmetic is fixed on purpose, so a figure means the same thing in every firm. Everything the arithmetic operates on is yours: the constants, the kinds of things that exist in your office, and any figure you want to build from the ones we compute. Pilots exist partly to find what our list is missing.</p></div></div>
+        <button class="faq-q" aria-expanded="false">Can I see how a number was calculated?<span class="plus">+</span></button>
+        <div class="faq-a"><div class="faq-a-inner"><p>Yes, all the way down. Every figure opens into the arithmetic that produced it, and each input in that arithmetic opens too, until you reach a number a person typed. When a figure looks wrong you can find out why instead of taking our word for it.</p></div></div>
+      </div>
+      <div class="faq-item">
+        <button class="faq-q" aria-expanded="false">Where does the AI come in?<span class="plus">+</span></button>
+        <div class="faq-a"><div class="faq-a-inner"><p>After the arithmetic, never before it. The engine runs plain arithmetic on the connections you draw, with nothing predicted behind your back. Agents sit on top to test scenarios, flag risk and prepare decisions. They operate the numbers. They do not invent them.</p></div></div>
       </div>
       <div class="faq-item">
         <button class="faq-q" aria-expanded="false">Who sees our salaries?<span class="plus">+</span></button>
         <div class="faq-a"><div class="faq-a-inner"><p>Salary data stays inside your firm. Pilots run on a private instance, nothing is used to train anything, and the benchmark layer (Prizma Z) only ever works with aggregated, anonymized figures from firms that opt in.</p></div></div>
       </div>
       <div class="faq-item">
-        <button class="faq-q" aria-expanded="false">Is this AI?<span class="plus">+</span></button>
-        <div class="faq-a"><div class="faq-a-inner"><p>Both, in the right order. The engine runs plain arithmetic on the connections you draw, with nothing predicted behind your back. An agentic layer sits on top to test scenarios and prepare decisions. Agents work with the numbers; they never make them up.</p></div></div>
+        <button class="faq-q" aria-expanded="false">What happens if Prizma goes away?<span class="plus">+</span></button>
+        <div class="faq-a"><div class="faq-a-inner"><p>A fair thing to ask a company this young. Your data exports to spreadsheets whenever you want, in a shape you can keep working in. The model is arithmetic you could rebuild by hand if you had to. What you would lose is the propagation, not the numbers.</p></div></div>
       </div>
       <div class="faq-item">
-        <button class="faq-q" aria-expanded="false">What does a pilot look like?<span class="plus">+</span></button>
-        <div class="faq-a"><div class="faq-a-inner"><p>Four weeks with your real data. We model the firm together in the first session, then you run your next go/no-go decisions through the canvas and judge the answers against your own instinct.</p></div></div>
+        <button class="faq-q" aria-expanded="false">What does a pilot involve, and what does it cost?<span class="plus">+</span></button>
+        <div class="faq-a"><div class="faq-a-inner"><p>Four weeks with your real data. We model the firm together in the first session, then you run your next go and no-go decisions through the canvas and judge the answers against your own instinct. The first pilots are free, because they are how pricing gets decided. If the answers never change a decision, we would rather find that out than sell you something.</p></div></div>
       </div>
     </div>
   </div>
