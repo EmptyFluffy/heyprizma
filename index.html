@@ -2215,6 +2215,45 @@ faqItems.forEach(item => {
   const total0 = Math.max(1, stage.offsetHeight - window.innerHeight);
   render(clamp(-stage.getBoundingClientRect().top / total0, 0, 1));
 })();
+
+/* roadmap anchor: arrive through the scrub, so a click unfolds the mark
+   into the staircase instead of landing on the folded pose at p=0 */
+(function(){
+  const stage = document.getElementById('rstage');
+  if (!stage) return;
+  const flat = matchMedia('(max-width: 700px)');
+  const reduced = matchMedia('(prefers-reduced-motion: reduce)');
+  const easeInOut = t => t < .5 ? 4 * t * t * t : 1 - Math.pow(-2 * t + 2, 3) / 2;
+  document.querySelectorAll('a[href="#roadmap"]').forEach(a => a.addEventListener('click', (e) => {
+    if (flat.matches) return; /* phones show the flat list; the default jump is right */
+    e.preventDefault();
+    const total = Math.max(1, stage.offsetHeight - window.innerHeight);
+    const top = stage.getBoundingClientRect().top + window.scrollY;
+    const target = top + 0.88 * total; /* deep enough that the staircase and its text are fully in */
+    if (reduced.matches){ window.scrollTo(0, target); history.replaceState(null, '', '#roadmap'); return; }
+    const from = window.scrollY, dist = target - from;
+    const D = Math.min(2200, Math.max(900, Math.abs(dist) * 0.45));
+    const html = document.documentElement;
+    const prev = html.style.scrollBehavior;
+    html.style.scrollBehavior = 'auto'; /* the tween owns the motion; css smooth would fight it */
+    let t0 = null, dead = false;
+    const kill = () => { dead = true; cleanup(); };
+    function cleanup(){
+      html.style.scrollBehavior = prev;
+      ['wheel', 'touchstart', 'keydown'].forEach(ev => window.removeEventListener(ev, kill));
+    }
+    ['wheel', 'touchstart', 'keydown'].forEach(ev => window.addEventListener(ev, kill, { passive: true }));
+    function step(ts){
+      if (dead) return; /* the user took the wheel; let them have it */
+      if (t0 === null) t0 = ts;
+      const k = Math.min(1, (ts - t0) / D);
+      window.scrollTo(0, from + dist * easeInOut(k));
+      if (k < 1) requestAnimationFrame(step);
+      else { cleanup(); history.replaceState(null, '', '#roadmap'); }
+    }
+    requestAnimationFrame(step);
+  }));
+})();
 </script>
 </body>
 </html>
