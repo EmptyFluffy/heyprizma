@@ -672,15 +672,15 @@ button{ font-family:inherit; }
 .pz-cursor{ position:absolute; left:0; top:0; z-index:40; pointer-events:none;
   opacity:0; transition:opacity .5s var(--ease);
   filter:drop-shadow(0 3px 8px oklch(24% 0.012 90 / .4)); will-change:transform; }
-.pz-cursor > svg{ display:block; transition:transform .12s var(--ease); transform-origin:7px 6px; }
+.pz-cursor > svg{ display:block; transition:transform .12s var(--ease); transform-origin:2px 3px; }
 .pz-cursor.down > svg{ transform:scale(.88); }
-.pz-cursor-tag{ position:absolute; left:24px; top:26px; white-space:nowrap;
+.pz-cursor-tag{ position:absolute; left:13px; top:21px; white-space:nowrap;
   display:inline-flex; align-items:center; gap:5px;
   background:linear-gradient(var(--surface), var(--surface)) padding-box,
              linear-gradient(105deg, #E0342B, #7A2FA6 52%, #1F5AD4) border-box;
   border:2px solid transparent;
-  color:var(--ink); font-size:12.5px; font-weight:600; letter-spacing:.01em;
-  padding:3.5px 11px 3.5px 8px; border-radius:999px;
+  color:var(--ink); font-size:12px; font-weight:600; letter-spacing:.01em;
+  padding:3px 10px 3px 7px; border-radius:9px 999px 999px 999px;
   box-shadow:0 2px 8px oklch(24% 0.012 90 / .22); }
 .pz-cursor-tag .spark{ display:block; }
 .pz-click-ring{ position:absolute; z-index:39; width:20px; height:20px; margin:-10px 0 0 -10px;
@@ -2012,10 +2012,10 @@ faqItems.forEach(item => {
 
     const cursor = document.createElement('div');
     cursor.className = 'pz-cursor';
-    cursor.innerHTML = '<svg viewBox="0 0 24 24" width="40" height="40">' +
+    cursor.innerHTML = '<svg viewBox="0 0 24 36" width="24" height="36">' +
       '<defs><linearGradient id="pzCurG" x1="0.12" y1="0.08" x2="0.72" y2="0.78">' +
       '<stop offset="0" stop-color="#7A2FA6"/><stop offset="1" stop-color="#1F5AD4"/></linearGradient></defs>' +
-      '<path d="M4 3.4 L20.2 9.4 L10.6 20.4 Z" fill="url(#pzCurG)" stroke="url(#pzCurG)" stroke-width="3" stroke-linejoin="round"/></svg>' +
+      '<path d="M5.65376 12.3673H5.46026L5.31717 12.4976L0.500002 16.8829L0.500002 1.19841L11.7841 12.3673H5.65376Z" fill="url(#pzCurG)" stroke="url(#pzCurG)" stroke-width="1.2" stroke-linejoin="round"/></svg>' +
       '<span class="pz-cursor-tag">' +
       '<svg class="spark" viewBox="0 0 20 18" width="16" height="14.4">' +
       '<path d="M11 1.5 C11.9 5.4 12.9 6.4 16.8 7.3 C12.9 8.2 11.9 9.2 11 13.1 C10.1 9.2 9.1 8.2 5.2 7.3 C9.1 6.4 10.1 5.4 11 1.5 Z" fill="#7A2FA6"/>' +
