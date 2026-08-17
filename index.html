@@ -693,7 +693,7 @@ button{ font-family:inherit; }
 @keyframes pz-tick{ 30%{ color:var(--blue); } }
 
 /* ============ THE AI STICKY ============ */
-.pz-sticky{ position:absolute; z-index:5; text-align:left; width:242px; cursor:grab;
+.pz-sticky{ position:absolute; z-index:5; text-align:left; width:276px; cursor:grab;
   background:var(--surface); border:1px solid var(--line-2); border-radius:var(--r-node);
   box-shadow:1px 1px 2px oklch(24% 0.012 90 / .034), 16px 16px 34px -24px oklch(24% 0.012 90 / .425);
   padding:12px 13px 13px;
@@ -1321,7 +1321,7 @@ footer{
           </div>
 
           <!-- THE AI STICKY · prompt the model from the canvas -->
-          <div class="pz-sticky" id="sticky" style="left:60px; top:28px;" data-anim="3">
+          <div class="pz-sticky" id="sticky" style="left:56px; top:28px;" data-anim="3">
             <div class="pz-sticky-head">
               <span class="pz-sticky-mark" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3l1.8 4.6L18 9.4l-4.2 1.8L12 16l-1.8-4.8L6 9.4l4.2-1.8Z"/><path d="M18.5 15.5l.9 2.1 2.1.9-2.1.9-.9 2.1-.9-2.1-2.1-.9 2.1-.9Z"/></svg></span>
               <span>Ask Prizma</span>
@@ -1880,44 +1880,75 @@ faqItems.forEach(item => {
   // the pointer demo replaced the old idle breath; stopIdle stays as a no-op the sliders may call
   function stopIdle(){}
 
-  // ---- the AI sticky: scripted proposals, draft or apply ----
+  // ---- the AI sticky: scripted plans, live numbers ----
+  // The plans are fixed (that is the script); every figure in them is computed
+  // from the model at ask time, so the answers stay true after the visitor
+  // drags a slider or applies a change. Same engine, same arithmetic.
+  const pct = (p) => Math.round(burnOf(p) / (p.revenue / p.target) * 100);
+  function planRebalance(){
+    // move up to 4 h of Nora from Harbor into Lumen's room, park up to 2.7 h of DD scope
+    const move = Math.min(4, M.harbor.hours.mara, Math.max(0, 20 - M.lumen.hours.mara));
+    const park = Math.min(2.7, M.harbor.hours.mara - move);
+    const hAfter = { ...M.harbor, hours: { ...M.harbor.hours, mara: M.harbor.hours.mara - move - park } };
+    const lAfter = { ...M.lumen, hours: { ...M.lumen.hours, mara: M.lumen.hours.mara + move } };
+    const before = M.lumen.hours.mara + M.harbor.hours.mara;
+    return { move, park, h0: pct(M.harbor), h1: pct(hAfter), l0: pct(M.lumen), l1: pct(lAfter),
+             w0: before, w1: before - park };
+  }
+  const freePool = () => Math.max(0, M.cap - M.lumen.hours.mara - M.harbor.hours.mara) * 0.6;
   const SCEN = {
     harbor: {
       match: /harbor|fix|burn|over|rebalance/i,
-      say: 'Harbor Baths burns <b>200% of its budget</b>. The model finds 4.0 h of Nora\u2019s Harbor time that Lumen can absorb inside its room, and 2.7 h of DD scope that can move to next phase. Burn drops to <b>151%</b>; the rest is a fee conversation.',
-      deltas: [
-        ['Harbor \u00b7 burn', '200% \u2192 151%', 'g'],
-        ['Lumen \u00b7 burn', '73% \u2192 86%', ''],
-        ['Nora \u00b7 workload', 'unchanged', ''],
-      ],
-      actions: true,
+      build(){
+        const p = planRebalance();
+        return {
+          say: 'Harbor Baths burns <b>' + p.h0 + '% of its budget</b>. The model finds ' + p.move.toFixed(1) + ' h of Nora\u2019s Harbor time that Lumen can absorb inside its room, and ' + p.park.toFixed(1) + ' h of DD scope that can move to next phase. Burn drops to <b>' + p.h1 + '%</b>; the rest is a fee conversation.',
+          deltas: [
+            ['Harbor \u00b7 burn', p.h0 + '% \u2192 ' + p.h1 + '%', 'g'],
+            ['Lumen \u00b7 burn', p.l0 + '% \u2192 ' + p.l1 + '%', ''],
+            ['Nora \u00b7 workload', p.w0.toFixed(1) + ' \u2192 ' + p.w1.toFixed(1) + ' h', ''],
+          ],
+          actions: true,
+        };
+      },
     },
     hotel: {
       match: /hotel|absorb|2.?000|take on|new project/i,
-      say: 'A 2,000 m\u00b2 hospitality job needs about <b>24 h/wk</b> through SD. The free pool covers <b>4.2 h</b>. Not absorbable as staffed: it needs Harbor Baths to shed hours, or a hire. The honest answer is the point.',
-      deltas: [
-        ['Needs', '24 h/wk', ''],
-        ['Free pool', '4.2 h/wk', 'r'],
-        ['Gap', '19.8 h/wk', 'r'],
-      ],
-      actions: false,
+      build(){
+        const free = freePool(), need = 24;
+        return {
+          say: 'A 2,000 m\u00b2 hospitality job needs about <b>' + need + ' h/wk</b> through SD. The free pool covers <b>' + free.toFixed(1) + ' h</b>. Not absorbable as staffed: it needs Harbor Baths to shed hours, or a hire. The honest answer is the point.',
+          deltas: [
+            ['Needs', need + ' h/wk', ''],
+            ['Free pool', free.toFixed(1) + ' h/wk', 'r'],
+            ['Gap', (need - free).toFixed(1) + ' h/wk', 'r'],
+          ],
+          actions: false,
+        };
+      },
     },
     mara: {
       match: /nora|mara|leaves|quit|single point|breaks/i,
-      say: 'If <b>Nora leaves</b>: Harbor Baths loses 18.7 h/wk and Lumen Pavilion 14.3 h/wk with no same-typology backfill. Both projects orphan, and survives-losing drops to <b>0</b>. She is the single point of failure.',
-      deltas: [
-        ['Harbor Baths', 'orphaned \u00b7 \u221218.7 h', 'r'],
-        ['Lumen Pavilion', '\u221214.3 h/wk', 'r'],
-        ['Survives losing', '1 \u2192 0 people', 'r'],
-      ],
-      actions: false,
+      build(){
+        const free = freePool();
+        const surv0 = free > 12 ? 2 : free > 4 ? 1 : 0;
+        return {
+          say: 'If <b>Nora leaves</b>: Harbor Baths loses ' + M.harbor.hours.mara.toFixed(1) + ' h/wk and Lumen Pavilion ' + M.lumen.hours.mara.toFixed(1) + ' h/wk with no same-typology backfill. Both projects orphan, and survives-losing drops to <b>0</b>. She is the single point of failure.',
+          deltas: [
+            ['Harbor Baths', 'orphaned \u00b7 \u2212' + M.harbor.hours.mara.toFixed(1) + ' h', 'r'],
+            ['Lumen Pavilion', '\u2212' + M.lumen.hours.mara.toFixed(1) + ' h/wk', 'r'],
+            ['Survives losing', surv0 + ' \u2192 0 people', 'r'],
+          ],
+          actions: false,
+        };
+      },
     },
   };
 
   const out = $('stickyOut'), think = $('stickyThink'), chips = $('stickyChips');
   function ask(key){
     stopIdle();
-    const sc = SCEN[key] || SCEN.hotel;
+    const sc = (SCEN[key] || SCEN.hotel).build();
     chips.style.display = 'none'; out.style.display = 'none';
     think.style.display = 'flex';
     setTimeout(() => {
@@ -1942,9 +1973,10 @@ faqItems.forEach(item => {
     }, 950);
   }
   function applyRebalance(){
-    // move 4h of Nora from Harbor to Lumen, park 2.7h of Harbor DD scope
-    M.harbor.hours.mara = 12.0;
-    M.lumen.hours.mara = Math.min(20, M.lumen.hours.mara + 4);
+    // execute exactly the plan the answer described, from the same helper
+    const p = planRebalance();
+    M.harbor.hours.mara = M.harbor.hours.mara - p.move - p.park;
+    M.lumen.hours.mara = Math.min(20, M.lumen.hours.mara + p.move);
     $('mara-lumen').value = M.lumen.hours.mara;
     derive();
     pulse('e-mara-harbor'); setTimeout(() => pulse('e-mara-lumen'), 260);
