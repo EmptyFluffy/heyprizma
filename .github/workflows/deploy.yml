@@ -22,5 +22,8 @@ jobs:
       - uses: actions/upload-pages-artifact@v3
         with:
           path: .
+      # the artifact is not always listed the moment its upload returns; without this pause the
+      # deploy step sometimes finds "0 artifacts" and fails
+      - run: sleep 20
       - id: deployment
         uses: actions/deploy-pages@v4
