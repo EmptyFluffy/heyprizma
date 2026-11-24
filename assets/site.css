@@ -2,7 +2,7 @@
    home page's system as it is (cool neutrals, Geist, 20 px outside and 12 px inside, pills for
    what you press, a lift only on what floats) and add one template:
      the layer's name and one sentence, the real screen, three figures read from the demo studio,
-     an animated abstraction of the screen with three plain points, the other layers.
+     an animated abstraction of the screen with three plain points, every page by group.
    Little copy on purpose; the screen is the argument. The tokens below are the home page's. */
 :root {
   --paper: #f5f6f8;
@@ -24,6 +24,7 @@
   --warn: #b4610a;
   --bad: #cf3a2f;
   --warn-bg: #fbeed3;
+  --bad-bg: #f8dedb;
   --ease: cubic-bezier(0.22, 1, 0.36, 1);
   --sans: 'Geist', 'Helvetica Neue', Helvetica, Arial, sans-serif;
   color-scheme: light;
@@ -319,6 +320,59 @@ img {
 .abs__svg tspan.t-val {
   font-weight: 600;
 }
+.abs__svg .t-big2 {
+  font-size: 44px;
+  font-weight: 600;
+  letter-spacing: -0.045em;
+}
+.abs__svg .t-unit2 {
+  font-size: 14px;
+  font-weight: 500;
+  fill: var(--ink-2);
+}
+.abs__svg .t-val2 {
+  font-size: 17px;
+  font-weight: 600;
+  letter-spacing: -0.01em;
+}
+.abs__svg .t-lead {
+  font-size: 22px;
+  font-weight: 600;
+  letter-spacing: -0.02em;
+}
+.abs__svg .t-ans {
+  font-size: 17px;
+}
+.abs__svg .t-sub2 {
+  font-size: 12.5px;
+  fill: var(--ink-2);
+}
+.abs__svg .t-chip {
+  font-size: 12.5px;
+  font-weight: 500;
+}
+.abs__svg .t-brand {
+  font-size: 15px;
+  font-weight: 650;
+  letter-spacing: -0.045em;
+}
+.abs__svg .t-doc {
+  font-size: 18px;
+  font-weight: 600;
+  letter-spacing: -0.03em;
+}
+.abs__svg .t-doc2 {
+  font-size: 24px;
+  font-weight: 600;
+  letter-spacing: -0.035em;
+}
+.abs__svg .t-row2 {
+  font-size: 12px;
+}
+.abs__svg .need {
+  stroke: var(--ink);
+  stroke-width: 2;
+}
 .abs__svg .t-sub {
   font-size: 11px;
   fill: var(--ink-2);
@@ -508,66 +562,21 @@ img {
   gap: 16px 32px;
   margin-bottom: clamp(24px, 3vw, 40px);
 }
-.tiles {
+.allpages {
   display: grid;
   grid-template-columns: repeat(4, minmax(0, 1fr));
-  gap: 12px;
-}
-.tile {
-  display: grid;
-  align-content: start;
-  gap: 4px;
-  min-height: 148px;
-  padding: 18px 20px 20px;
-  text-decoration: none;
+  gap: 24px 28px;
+  padding: 26px 22px 22px;
   background: var(--card);
   border-radius: 20px;
   box-shadow: inset 0 0 0 1px var(--line);
-  transition: transform 0.25s var(--ease), box-shadow 0.25s ease;
 }
-a.tile:hover {
-  transform: translateY(-3px);
-  box-shadow: inset 0 0 0 1px var(--line), var(--lift-sm);
+.allpages .menu__group > p {
+  margin-bottom: 10px;
 }
-.tile__ic {
-  display: grid;
-  place-items: center;
-  width: 38px;
-  height: 38px;
-  margin-bottom: 18px;
+/* the page you are on: its tile in ink, and it is not a link */
+.allpages span.mi {
   background: var(--paper);
-  border-radius: 10px;
-}
-.tile__ic svg {
-  width: 18px;
-  height: 18px;
-  fill: none;
-  stroke: currentColor;
-  stroke-width: 1.75;
-  stroke-linecap: round;
-  stroke-linejoin: round;
-}
-.tile b {
-  font-size: 17px;
-  font-weight: 600;
-  line-height: 1.25;
-  letter-spacing: -0.01em;
-}
-.tile span {
-  font-size: 14px;
-  line-height: 1.35;
-  color: var(--ink-2);
-}
-.tile[aria-current='page'] {
-  color: #fff;
-  background: var(--ink);
-  box-shadow: none;
-}
-.tile[aria-current='page'] .tile__ic {
-  background: rgb(255 255 255 / 0.12);
-}
-.tile[aria-current='page'] span {
-  color: rgb(255 255 255 / 0.7);
 }
 
 /* ---- the index of layers: each group and its screens ---- */
@@ -635,6 +644,9 @@ a.tile:hover {
   font-size: 14.5px;
   line-height: 1.4;
   color: var(--ink-2);
+}
+.cards--4 {
+  grid-template-columns: repeat(4, minmax(0, 1fr));
 }
 .cards--one {
   grid-template-columns: minmax(0, 1fr);
@@ -774,10 +786,9 @@ a.tile:hover {
     grid-template-columns: minmax(0, 1fr);
     align-items: start;
   }
-  .tiles {
-    grid-template-columns: repeat(2, minmax(0, 1fr));
-  }
-  .cards {
+  .allpages,
+  .cards,
+  .cards--4 {
     grid-template-columns: repeat(2, minmax(0, 1fr));
   }
   .cards--one {
@@ -826,12 +837,10 @@ a.tile:hover {
     padding-left: max(16px, env(safe-area-inset-left, 0px));
     padding-right: max(16px, env(safe-area-inset-right, 0px));
   }
-  .tiles,
-  .cards {
+  .allpages,
+  .cards,
+  .cards--4 {
     grid-template-columns: minmax(0, 1fr);
-  }
-  .tile {
-    min-height: 0;
   }
 }
 @media (prefers-reduced-motion: reduce) {
@@ -839,7 +848,6 @@ a.tile:hover {
     scroll-behavior: auto;
   }
   .btn,
-  .tile,
   .pcard,
   .more svg {
     transition: none;
