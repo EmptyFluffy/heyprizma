@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<title>Fragility and Risk | Prizma</title>
+<meta name="description" content="Fragility and Risk in Prizma: what breaks in an architecture studio if someone leaves, with single points of failure, thin projects and skills held by one person.">
+<link rel="canonical" href="https://heyprizma.com/product/fragility/">
+<meta name="theme-color" content="#f5f6f8">
+<meta name="color-scheme" content="light">
+<link rel="icon" href="/favicon.ico" sizes="32x32">
+<link rel="icon" href="/favicon-16.png" type="image/png" sizes="16x16">
+<link rel="icon" href="/favicon-32.png" type="image/png" sizes="32x32">
+<link rel="apple-touch-icon" href="/apple-touch-icon.png">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="Prizma">
+<meta property="og:url" content="https://heyprizma.com/product/fragility/">
+<meta property="og:title" content="Fragility and Risk | Prizma">
+<meta property="og:description" content="Fragility and Risk in Prizma: what breaks in an architecture studio if someone leaves, with single points of failure, thin projects and skills held by one person.">
+<meta property="og:image" content="https://heyprizma.com/assets/og.png">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Geist:wght@300..700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="/assets/site.css">
+<link rel="stylesheet" href="/assets/menu.css">
+</head>
+<body>
+<header class="nav" id="top">
+  <div class="wrap wrap--wide nav__in">
+    <a class="brand" href="/" aria-label="prizma, home">prizma</a>
+    <nav class="nav__links" aria-label="Main">
+      <button type="button" class="menu__btn" aria-expanded="false" aria-controls="menu-product">Product <svg viewBox="0 0 16 16" aria-hidden="true"><path d="m4 6 4 4 4-4"/></svg></button>
+      <div class="menu__panel" id="menu-product" hidden>
+        <div class="wrap wrap--wide">
+          <div class="menu__card">
+            <div class="menu__group">
+          <p>The model</p>
+          <a class="mi" href="/product/canvas/"><span class="mi__ic"><svg viewBox="0 0 24 24" aria-hidden="true"><rect width="8" height="8" x="3" y="3" rx="2"/><path d="M7 11v4a2 2 0 0 0 2 2h4"/><rect width="8" height="8" x="13" y="13" rx="2"/></svg></span><span><b>Canvas</b><small>The whole studio on one sheet</small></span></a>
+        </div>
+        <div class="menu__group">
+          <p>Money</p>
+          <a class="mi" href="/product/studio-economics/"><span class="mi__ic"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M6 22V4a2 2 0 0 1 2-2h8a2 2 0 0 1 2 2v18Z"/><path d="M6 12H4a2 2 0 0 0-2 2v6a2 2 0 0 0 2 2h2"/><path d="M18 9h2a2 2 0 0 1 2 2v9a2 2 0 0 1-2 2h-2"/><path d="M10 6h4M10 10h4M10 14h4"/></svg></span><span><b>Studio Economics</b><small>Whether the work pays</small></span></a>
+          <a class="mi" href="/product/pl/"><span class="mi__ic"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M3 3v16a2 2 0 0 0 2 2h16"/><path d="M18 17V9"/><path d="M13 17V5"/><path d="M8 17v-3"/></svg></span><span><b>P&amp;L</b><small>Where the revenue goes</small></span></a>
+          <a class="mi" href="/product/projects/"><span class="mi__ic"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M20 20a2 2 0 0 0 2-2V8a2 2 0 0 0-2-2h-7.9a2 2 0 0 1-1.69-.9L9.6 3.9A2 2 0 0 0 7.93 3H4a2 2 0 0 0-2 2v13a2 2 0 0 0 2 2Z"/></svg></span><span><b>Projects</b><small>Fees, phases and verdicts</small></span></a>
+        </div>
+        <div class="menu__group">
+          <p>People and time</p>
+          <a class="mi" href="/product/capacity/"><span class="mi__ic"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="m12 14 4-4"/><path d="M3.34 19a10 10 0 1 1 17.32 0"/></svg></span><span><b>Capacity</b><small>Room for new work, week by week</small></span></a>
+          <a class="mi" href="/product/people/"><span class="mi__ic"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M22 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg></span><span><b>People</b><small>Each person’s load</small></span></a>
+          <a class="mi" href="/product/gap-review/"><span class="mi__ic"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3v14"/><path d="M5 10h14"/><path d="M5 21h14"/></svg></span><span><b>Gap Review</b><small>Planned against actual</small></span></a>
+        </div>
+        <div class="menu__group">
+          <p>Risk</p>
+          <a class="mi" href="/product/fragility/" aria-current="page"><span class="mi__ic"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="m21.73 18-8-14a2 2 0 0 0-3.48 0l-8 14A2 2 0 0 0 4 21h16a2 2 0 0 0 1.73-3"/><path d="M12 9v4"/><path d="M12 17h.01"/></svg></span><span><b>Fragility and Risk</b><small>Who you cannot lose</small></span></a>
+        </div>
+            <div class="menu__group menu__group--home">
+              <p>Prizma</p>
+              <a href="/#change">How it works</a>
+              <a href="/#math">The math</a>
+              <a href="/#questions">Questions</a>
+              <a href="/login/">Log in</a>
+            </div>
+            <p class="menu__foot"><span>Every screen is Atelier Costanera, a demo studio.</span><a href="/product/">All eight layers <svg viewBox="0 0 16 16" aria-hidden="true"><path d="m6 4 4 4-4 4"/></svg></a></p>
+          </div>
+        </div>
+      </div>
+      <a href="/#change">How it works</a>
+      <a href="/#math">The math</a>
+      <a href="/#questions">Questions</a>
+    </nav>
+    <span class="nav__end">
+      <a class="nav__login" href="/login/">Log in</a>
+      <a class="btn btn--sm" href="mailto:contact@heyprizma.com?subject=Pilot%20enquiry">Book a pilot</a>
+    </span>
+  </div>
+</header>
+<main>
+  <section class="wrap phead">
+    <a class="tag" href="/product/"><i></i>Risk</a>
+    <h1 class="h1"><b>Fragility and Risk.</b> Who the studio cannot lose.</h1>
+    <div class="phead__act">
+      <a class="btn" href="mailto:contact@heyprizma.com?subject=Pilot%20enquiry">Book a pilot</a>
+      <a class="more" href="/product/canvas/">Next layer: Canvas <svg viewBox="0 0 16 16" aria-hidden="true"><path d="m6 4 4 4-4 4"/></svg></a>
+    </div>
+  </section>
+
+  <section class="wrap">
+    <figure class="shot"><img src="/assets/product/fragility.webp" width="2400" height="1500" alt="Fragility and Risk in Prizma: the studio survives losing zero architects, with single points of failure and thin projects beside it, and a coverage grid of people against projects." fetchpriority="high"></figure>
+    <p class="cap">Fragility and Risk on Atelier Costanera, the demo studio.</p>
+  </section>
+
+  <section class="wrap duo">
+    <h2 class="h2">What breaks if someone leaves.</h2>
+    <div class="figs">
+      <div><b>0</b><p>architects can leave before a project has none</p></div>
+      <div><b>1</b><p>person is a single point of failure</p></div>
+      <div><b>12</b><p>skills are held by one person only</p></div>
+    </div>
+  </section>
+
+  <section class="wrap duo duo--detail">
+    <figure class="detail"><img src="/assets/product/fragility-detail.webp" width="1800" height="762" alt="The coverage grid: hours a week of each person on each project, with a verdict per project from three architects down to no architect." loading="lazy"></figure>
+    <div>
+      <h2 class="h2">Coverage, project by project.</h2>
+      <ul class="points">
+        <li>Hours per person on every project, in one grid.</li>
+        <li>A project with one architect is flagged before it is a problem.</li>
+        <li>Pick a person to read what their leaving would cost.</li>
+      </ul>
+    </div>
+  </section>
+
+  <section class="wrap layers">
+    <div class="layers__head">
+      <h2 class="h2">One model, eight ways to read it.</h2>
+      <a class="more" href="/product/">All eight layers <svg viewBox="0 0 16 16" aria-hidden="true"><path d="m6 4 4 4-4 4"/></svg></a>
+    </div>
+    <div class="tiles">
+      <a class="tile" href="/product/canvas/"><span class="tile__ic"><svg viewBox="0 0 24 24" aria-hidden="true"><rect width="8" height="8" x="3" y="3" rx="2"/><path d="M7 11v4a2 2 0 0 0 2 2h4"/><rect width="8" height="8" x="13" y="13" rx="2"/></svg></span><b>Canvas</b><span>The whole studio on one sheet</span></a>
+      <a class="tile" href="/product/studio-economics/"><span class="tile__ic"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M6 22V4a2 2 0 0 1 2-2h8a2 2 0 0 1 2 2v18Z"/><path d="M6 12H4a2 2 0 0 0-2 2v6a2 2 0 0 0 2 2h2"/><path d="M18 9h2a2 2 0 0 1 2 2v9a2 2 0 0 1-2 2h-2"/><path d="M10 6h4M10 10h4M10 14h4"/></svg></span><b>Studio Economics</b><span>Whether the work pays</span></a>
+      <a class="tile" href="/product/pl/"><span class="tile__ic"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M3 3v16a2 2 0 0 0 2 2h16"/><path d="M18 17V9"/><path d="M13 17V5"/><path d="M8 17v-3"/></svg></span><b>P&amp;L</b><span>Where the revenue goes</span></a>
+      <a class="tile" href="/product/projects/"><span class="tile__ic"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M20 20a2 2 0 0 0 2-2V8a2 2 0 0 0-2-2h-7.9a2 2 0 0 1-1.69-.9L9.6 3.9A2 2 0 0 0 7.93 3H4a2 2 0 0 0-2 2v13a2 2 0 0 0 2 2Z"/></svg></span><b>Projects</b><span>Fees, phases and verdicts</span></a>
+      <a class="tile" href="/product/capacity/"><span class="tile__ic"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="m12 14 4-4"/><path d="M3.34 19a10 10 0 1 1 17.32 0"/></svg></span><b>Capacity</b><span>Room for new work, week by week</span></a>
+      <a class="tile" href="/product/people/"><span class="tile__ic"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M22 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg></span><b>People</b><span>Each person’s load</span></a>
+      <a class="tile" href="/product/gap-review/"><span class="tile__ic"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3v14"/><path d="M5 10h14"/><path d="M5 21h14"/></svg></span><b>Gap Review</b><span>Planned against actual</span></a>
+      <div class="tile" aria-current="page"><span class="tile__ic"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="m21.73 18-8-14a2 2 0 0 0-3.48 0l-8 14A2 2 0 0 0 4 21h16a2 2 0 0 0 1.73-3"/><path d="M12 9v4"/><path d="M12 17h.01"/></svg></span><b>Fragility and Risk</b><span>Who you cannot lose</span></div>
+    </div>
+  </section>
+</main>
+
+<footer class="end" id="pilot">
+  <div class="wrap">
+    <div class="end__call">
+      <h2>Say yes with the numbers in hand.</h2>
+      <div class="end__act">
+        <a class="btn" href="mailto:contact@heyprizma.com?subject=Pilot%20enquiry">Book a pilot</a>
+        <p class="mail"><span id="mail">contact@heyprizma.com</span><button type="button" id="copy">Copy</button></p>
+      </div>
+    </div>
+    <div class="end__foot">
+      <a class="brand" href="/">prizma</a>
+      <nav aria-label="Footer"><a href="/product/">Product</a><a href="/#change">How it works</a><a href="/#math">The math</a><a href="/login/">Log in</a></nav>
+      <span>© 2026 prizma. Every figure comes from Atelier Costanera, a demo studio, as of 13 Jun 2026.</span>
+    </div>
+  </div>
+</footer>
+<script src="/assets/menu.js" defer></script>
+<script>
+document.getElementById('copy').addEventListener('click', function () {
+  var b = this
+  navigator.clipboard.writeText(document.getElementById('mail').textContent).then(function () {
+    b.textContent = 'Copied'
+    setTimeout(function () { b.textContent = 'Copy' }, 1600)
+  })
+})
+</script>
+</body>
+</html>

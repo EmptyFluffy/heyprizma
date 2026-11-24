@@ -1,0 +1,657 @@
+/* The product pages of heyprizma.com (one per layer of the app, plus their index). They take the
+   home page's system as it is (cool neutrals, Geist, 20 px outside and 12 px inside, pills for
+   what you press, a lift only on what floats) and add one template:
+     the layer's name and one sentence, the real screen, three figures read from the demo studio,
+     one detail of the screen with three plain points, the other layers.
+   Little copy on purpose; the screen is the argument. The tokens below are the home page's. */
+:root {
+  --paper: #f5f6f8;
+  --paper-2: #e8ebf0;
+  --card: #ffffff;
+  --ink: #0e1116;
+  --ink-2: #4a5160;
+  --ink-3: #8b919d;
+  --line: #e6e9ee;
+  --rule: #d6dae1;
+  --mute: #858b97; /* the quiet half of a headline carries the sentence here: 3.2:1 as large text */
+  --lift: 0 1px 2px rgb(14 17 22 / 0.05), 0 30px 70px -30px rgb(14 17 22 / 0.3);
+  --lift-sm: 0 1px 2px rgb(14 17 22 / 0.04), 0 10px 28px -18px rgb(14 17 22 / 0.14);
+  --hotel: #2e7bd0;
+  --casa: #d9539a;
+  --school: #0a9396;
+  --offices: #7a5bd6;
+  --ease: cubic-bezier(0.22, 1, 0.36, 1);
+  --sans: 'Geist', 'Helvetica Neue', Helvetica, Arial, sans-serif;
+  color-scheme: light;
+}
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+html {
+  scroll-behavior: smooth;
+  scroll-padding-top: 84px;
+}
+body {
+  margin: 0;
+  background: var(--paper);
+  color: var(--ink);
+  font-family: var(--sans);
+  font-size: 17px;
+  line-height: 1.5;
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+  font-variant-numeric: tabular-nums;
+}
+a {
+  color: inherit;
+}
+button {
+  font: inherit;
+  color: inherit;
+}
+h1,
+h2,
+h3,
+p,
+ul,
+figure {
+  margin: 0;
+}
+ul {
+  padding: 0;
+  list-style: none;
+}
+img {
+  display: block;
+  max-width: 100%;
+  height: auto;
+}
+:focus-visible {
+  outline: 2px solid var(--ink);
+  outline-offset: 3px;
+  border-radius: 8px;
+}
+.end :focus-visible {
+  outline-color: #fff;
+}
+.wrap {
+  width: 100%;
+  max-width: 1400px;
+  margin: 0 auto;
+  padding-left: max(24px, env(safe-area-inset-left, 0px));
+  padding-right: max(24px, env(safe-area-inset-right, 0px));
+}
+.btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  height: 48px;
+  padding: 0 24px;
+  font-size: 16px;
+  font-weight: 500;
+  white-space: nowrap;
+  color: var(--paper);
+  background: var(--ink);
+  border: 0;
+  border-radius: 999px;
+  text-decoration: none;
+  cursor: pointer;
+  transition: transform 0.2s var(--ease), background 0.2s ease;
+}
+.btn:hover {
+  background: #262b36;
+}
+.btn:active {
+  transform: scale(0.97);
+}
+.btn--sm {
+  height: 34px;
+  padding: 0 16px;
+  font-size: 14px;
+}
+.more {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 16px;
+  font-weight: 500;
+  text-decoration: none;
+}
+.more svg {
+  width: 14px;
+  height: 14px;
+  fill: none;
+  stroke: currentColor;
+  stroke-width: 1.9;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+  transition: transform 0.2s var(--ease);
+}
+.more:hover svg {
+  transform: translateX(3px);
+}
+.h2 {
+  font-size: clamp(30px, 3.6vw, 48px);
+  font-weight: 600;
+  line-height: 1.06;
+  letter-spacing: -0.032em;
+  text-wrap: balance;
+}
+
+/* ---- the bar ---- */
+.nav {
+  position: sticky;
+  top: 0;
+  z-index: 30;
+  background: color-mix(in srgb, var(--paper) 78%, transparent);
+  -webkit-backdrop-filter: saturate(1.6) blur(18px);
+  backdrop-filter: saturate(1.6) blur(18px);
+}
+.nav__in {
+  display: flex;
+  align-items: center;
+  gap: 36px;
+  height: 60px;
+}
+.brand {
+  font-size: 23px;
+  font-weight: 650;
+  line-height: 1;
+  letter-spacing: -0.045em;
+  text-decoration: none;
+}
+.nav__links {
+  display: flex;
+  gap: 26px;
+  font-size: 14px;
+  color: var(--ink-2);
+}
+.nav__links a,
+.nav__login {
+  text-decoration: none;
+  transition: color 0.2s ease;
+}
+.nav__links a:hover,
+.nav__login:hover {
+  color: var(--ink);
+}
+.nav__end {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+  margin-left: auto;
+}
+.nav__login {
+  font-size: 14px;
+  color: var(--ink-2);
+}
+
+/* ---- the head of a page: where it sits, its name, one sentence ---- */
+.phead {
+  padding-block: clamp(36px, 5vw, 76px) clamp(28px, 3.4vw, 48px);
+}
+.tag {
+  display: inline-flex;
+  align-items: center;
+  gap: 9px;
+  height: 32px;
+  margin-bottom: 24px;
+  padding: 0 14px 0 11px;
+  font-size: 13.5px;
+  font-weight: 500;
+  color: var(--ink-2);
+  text-decoration: none;
+  background: var(--card);
+  border-radius: 999px;
+  box-shadow: inset 0 0 0 1px var(--line), var(--lift-sm);
+}
+.tag i {
+  width: 9px;
+  height: 9px;
+  background: conic-gradient(var(--hotel), var(--offices), var(--casa), var(--school), var(--hotel));
+  border-radius: 50%;
+}
+/* the name in ink, the sentence beside it in the quiet tone: the home page's two-tone headline */
+.h1 {
+  max-width: 15em;
+  font-size: clamp(38px, 4.9vw, 72px);
+  font-weight: 600;
+  line-height: 1.04;
+  letter-spacing: -0.048em;
+  color: var(--mute);
+  text-wrap: balance;
+}
+.h1 b {
+  font-weight: inherit;
+  color: var(--ink);
+}
+.phead__act {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 14px 28px;
+  margin-top: clamp(24px, 2.6vw, 36px);
+}
+
+/* ---- the screen itself: the app as it is, lifted off the page ---- */
+.shot {
+  overflow: hidden;
+  background: var(--ink);
+  border-radius: 20px;
+  box-shadow: var(--lift);
+}
+.shot img {
+  width: 100%;
+}
+.cap {
+  margin-top: 14px;
+  font-size: 13.5px;
+  color: var(--ink-2);
+}
+
+/* ---- words on one side, figures or a detail on the other ---- */
+.duo {
+  display: grid;
+  grid-template-columns: minmax(0, 5fr) minmax(0, 7fr);
+  align-items: end;
+  gap: 28px clamp(28px, 4.5vw, 72px);
+  padding-block: clamp(72px, 9vw, 128px) 0;
+}
+.figs {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 0 24px;
+  padding-top: 16px;
+  border-top: 1px solid var(--rule);
+}
+.figs b {
+  display: block;
+  font-size: clamp(36px, 4.4vw, 62px);
+  font-weight: 600;
+  line-height: 1;
+  letter-spacing: -0.05em;
+  white-space: nowrap;
+}
+.figs p {
+  max-width: 14em;
+  margin-top: 10px;
+  font-size: 15px;
+  line-height: 1.35;
+  color: var(--ink-2);
+}
+.duo--detail {
+  grid-template-columns: minmax(0, 7fr) minmax(0, 5fr);
+  align-items: center;
+}
+.detail {
+  overflow: hidden;
+  background: var(--card);
+  border-radius: 20px;
+  box-shadow: inset 0 0 0 1px var(--line), var(--lift-sm);
+}
+.detail img {
+  width: 100%;
+}
+.points {
+  margin-top: 22px;
+  border-top: 1px solid var(--rule);
+}
+.points li {
+  padding: 14px 0;
+  font-size: 16px;
+  line-height: 1.45;
+  color: var(--ink-2);
+  border-bottom: 1px solid var(--line);
+}
+
+/* ---- the layers: every page of the app, the current one in ink ---- */
+.layers {
+  padding-block: clamp(80px, 10vw, 144px) clamp(72px, 9vw, 128px);
+}
+.layers__head {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: flex-end;
+  justify-content: space-between;
+  gap: 16px 32px;
+  margin-bottom: clamp(24px, 3vw, 40px);
+}
+.tiles {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 12px;
+}
+.tile {
+  display: grid;
+  align-content: start;
+  gap: 4px;
+  min-height: 148px;
+  padding: 18px 20px 20px;
+  text-decoration: none;
+  background: var(--card);
+  border-radius: 20px;
+  box-shadow: inset 0 0 0 1px var(--line);
+  transition: transform 0.25s var(--ease), box-shadow 0.25s ease;
+}
+a.tile:hover {
+  transform: translateY(-3px);
+  box-shadow: inset 0 0 0 1px var(--line), var(--lift-sm);
+}
+.tile__ic {
+  display: grid;
+  place-items: center;
+  width: 38px;
+  height: 38px;
+  margin-bottom: 18px;
+  background: var(--paper);
+  border-radius: 10px;
+}
+.tile__ic svg {
+  width: 18px;
+  height: 18px;
+  fill: none;
+  stroke: currentColor;
+  stroke-width: 1.75;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+.tile b {
+  font-size: 17px;
+  font-weight: 600;
+  line-height: 1.25;
+  letter-spacing: -0.01em;
+}
+.tile span {
+  font-size: 14px;
+  line-height: 1.35;
+  color: var(--ink-2);
+}
+.tile[aria-current='page'] {
+  color: #fff;
+  background: var(--ink);
+  box-shadow: none;
+}
+.tile[aria-current='page'] .tile__ic {
+  background: rgb(255 255 255 / 0.12);
+}
+.tile[aria-current='page'] span {
+  color: rgb(255 255 255 / 0.7);
+}
+
+/* ---- the index of layers: each group and its screens ---- */
+.group {
+  padding-top: clamp(48px, 6vw, 88px);
+}
+.group__h {
+  display: flex;
+  align-items: baseline;
+  gap: 14px;
+  padding-bottom: 14px;
+  border-bottom: 1px solid var(--rule);
+}
+.group__h h2 {
+  font-size: 22px;
+  font-weight: 600;
+  letter-spacing: -0.02em;
+}
+.group__h p {
+  font-size: 15px;
+  color: var(--ink-2);
+}
+.cards {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 16px;
+  margin-top: 20px;
+}
+.pcard {
+  display: grid;
+  align-content: start;
+  text-decoration: none;
+  background: var(--card);
+  border-radius: 20px;
+  box-shadow: inset 0 0 0 1px var(--line);
+  transition: transform 0.25s var(--ease), box-shadow 0.25s ease;
+}
+.pcard:hover {
+  transform: translateY(-3px);
+  box-shadow: inset 0 0 0 1px var(--line), var(--lift-sm);
+}
+.pcard__img {
+  margin: 8px 8px 0;
+  overflow: hidden;
+  background: var(--ink);
+  border-radius: 12px;
+}
+.pcard__img img {
+  width: 100%;
+}
+.pcard__t {
+  display: grid;
+  gap: 3px;
+  padding: 16px 20px 20px;
+}
+.pcard b {
+  color: var(--ink);
+  font-size: 18px;
+  font-weight: 600;
+  letter-spacing: -0.012em;
+}
+.pcard span {
+  font-size: 14.5px;
+  line-height: 1.4;
+  color: var(--ink-2);
+}
+.cards--one {
+  grid-template-columns: minmax(0, 1fr);
+}
+.cards--one .pcard {
+  grid-template-columns: minmax(0, 7fr) minmax(0, 5fr);
+  align-items: center;
+}
+.cards--one .pcard__img {
+  margin: 8px;
+}
+.cards--one .pcard__t {
+  gap: 6px;
+  padding: 24px clamp(20px, 3vw, 44px);
+}
+.cards--one .pcard b {
+  font-size: clamp(24px, 2.6vw, 34px);
+  line-height: 1.1;
+  letter-spacing: -0.03em;
+}
+.cards--one .pcard__t > span {
+  font-size: 16px;
+}
+.pcard__figs {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 0 16px;
+  margin-top: 22px;
+  padding-top: 14px;
+  border-top: 1px solid var(--rule);
+}
+.pcard__figs b {
+  display: block;
+  font-size: clamp(22px, 2.2vw, 30px);
+  line-height: 1.1;
+  letter-spacing: -0.035em;
+  white-space: nowrap;
+}
+.pcard__figs small {
+  display: block;
+  margin-top: 4px;
+  font-size: 13px;
+  line-height: 1.35;
+  color: var(--ink-2);
+}
+.index-end {
+  padding-bottom: clamp(72px, 9vw, 128px);
+}
+
+/* ---- the close and the foot, as on the home page ---- */
+.end {
+  color: #fff;
+  background: var(--ink);
+}
+.end__call {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: flex-end;
+  justify-content: space-between;
+  gap: 32px 56px;
+  padding-block: clamp(56px, 7vw, 104px) clamp(40px, 5vw, 64px);
+}
+.end__call h2 {
+  max-width: 11em;
+  font-size: clamp(32px, 4.6vw, 62px);
+  font-weight: 600;
+  line-height: 1.02;
+  letter-spacing: -0.042em;
+  text-wrap: balance;
+}
+.end__act {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 14px 24px;
+}
+.end .btn {
+  color: var(--ink);
+  background: #fff;
+}
+.end .btn:hover {
+  background: var(--paper);
+}
+.mail {
+  display: inline-flex;
+  align-items: center;
+  gap: 12px;
+  font-size: 15px;
+  color: rgb(255 255 255 / 0.72);
+}
+.mail span {
+  user-select: all;
+}
+.mail button {
+  padding: 5px 12px;
+  font-size: 12.5px;
+  background: transparent;
+  border: 1px solid rgb(255 255 255 / 0.25);
+  border-radius: 999px;
+  cursor: pointer;
+}
+.mail button:hover {
+  border-color: rgb(255 255 255 / 0.5);
+}
+.end__foot {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  gap: 12px 36px;
+  padding-block: 22px 30px;
+  font-size: 13px;
+  color: rgb(255 255 255 / 0.5);
+  border-top: 1px solid rgb(255 255 255 / 0.14);
+}
+.end__foot .brand {
+  font-size: 20px;
+  color: #fff;
+}
+.end__foot nav {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px 22px;
+}
+.end__foot a {
+  text-decoration: none;
+}
+.end__foot a:hover {
+  color: #fff;
+}
+.end__foot > span {
+  margin-left: auto;
+}
+
+@media (max-width: 1020px) {
+  .duo,
+  .duo--detail {
+    grid-template-columns: minmax(0, 1fr);
+    align-items: start;
+  }
+  .tiles {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+  .cards {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+  .cards--one {
+    grid-template-columns: minmax(0, 1fr);
+  }
+}
+@media (max-width: 760px) {
+  .nav__login {
+    display: none;
+  }
+  .nav__in {
+    gap: 20px;
+  }
+  .shot,
+  .detail {
+    border-radius: 12px;
+    /* a whole screen cannot be read at phone width: it keeps a readable size and scrolls sideways */
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+  }
+  .shot img {
+    width: 760px;
+    max-width: none;
+  }
+  .detail img {
+    width: 640px;
+    max-width: none;
+  }
+  .cards--one .pcard {
+    grid-template-columns: minmax(0, 1fr);
+  }
+  .cards--one .pcard__img {
+    margin: 8px 8px 0;
+  }
+  .figs {
+    grid-template-columns: minmax(0, 1fr);
+    gap: 22px;
+  }
+  .figs p {
+    max-width: none;
+  }
+  .end__foot > span {
+    margin-left: 0;
+  }
+}
+@media (max-width: 560px) {
+  .wrap {
+    padding-left: max(16px, env(safe-area-inset-left, 0px));
+    padding-right: max(16px, env(safe-area-inset-right, 0px));
+  }
+  .tiles,
+  .cards {
+    grid-template-columns: minmax(0, 1fr);
+  }
+  .tile {
+    min-height: 0;
+  }
+}
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+  .btn,
+  .tile,
+  .pcard,
+  .more svg {
+    transition: none;
+  }
+}
