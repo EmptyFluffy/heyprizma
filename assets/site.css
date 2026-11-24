@@ -2,7 +2,7 @@
    home page's system as it is (cool neutrals, Geist, 20 px outside and 12 px inside, pills for
    what you press, a lift only on what floats) and add one template:
      the layer's name and one sentence, the real screen, three figures read from the demo studio,
-     one detail of the screen with three plain points, the other layers.
+     an animated abstraction of the screen with three plain points, the other layers.
    Little copy on purpose; the screen is the argument. The tokens below are the home page's. */
 :root {
   --paper: #f5f6f8;
@@ -20,6 +20,10 @@
   --casa: #d9539a;
   --school: #0a9396;
   --offices: #7a5bd6;
+  --good: #12855a;
+  --warn: #b4610a;
+  --bad: #cf3a2f;
+  --warn-bg: #fbeed3;
   --ease: cubic-bezier(0.22, 1, 0.36, 1);
   --sans: 'Geist', 'Helvetica Neue', Helvetica, Arial, sans-serif;
   color-scheme: light;
@@ -285,14 +289,200 @@ img {
   grid-template-columns: minmax(0, 7fr) minmax(0, 5fr);
   align-items: center;
 }
-.detail {
-  overflow: hidden;
+/* ---- the abstraction: the layer redrawn from its own parts, on one sheet. The drawing at rest
+   is the finished one; `play` (assets/abs.js: when it is first seen, and when the pointer comes
+   back) runs each part in. Sizes are in the drawing's own 720 x 440 units. ---- */
+.abs {
+  padding: clamp(8px, 1.4vw, 20px);
   background: var(--card);
   border-radius: 20px;
   box-shadow: inset 0 0 0 1px var(--line), var(--lift-sm);
 }
-.detail img {
+.abs__svg {
+  display: block;
   width: 100%;
+  height: auto;
+  font-family: var(--sans);
+  font-variant-numeric: tabular-nums;
+}
+.abs__svg .t {
+  font-size: 13px;
+  fill: var(--ink);
+}
+.abs__svg .t-name {
+  font-size: 13.5px;
+  font-weight: 600;
+}
+.abs__svg .t-name--s {
+  font-size: 12.5px;
+}
+.abs__svg tspan.t-val {
+  font-weight: 600;
+}
+.abs__svg .t-sub {
+  font-size: 11px;
+  fill: var(--ink-2);
+}
+.abs__svg .t-fig {
+  font-size: 19px;
+  font-weight: 600;
+  letter-spacing: -0.02em;
+}
+.abs__svg .t-vd {
+  font-size: 10.5px;
+  font-weight: 500;
+  fill: var(--ink-2);
+}
+.abs__svg .t-k {
+  font-size: 14px;
+  font-weight: 500;
+  fill: var(--ink-2);
+}
+.abs__svg .t-big {
+  font-size: 56px;
+  font-weight: 600;
+  letter-spacing: -0.045em;
+}
+.abs__svg .t-unit {
+  font-size: 20px;
+  font-weight: 500;
+  fill: var(--ink-2);
+}
+.abs__svg .t-vdl {
+  font-size: 15px;
+  font-weight: 500;
+}
+.abs__svg .t-tick {
+  font-size: 12.5px;
+  font-weight: 600;
+}
+.abs__svg .t-row {
+  font-size: 14px;
+}
+.abs__svg .t-val {
+  font-size: 14.5px;
+  font-weight: 600;
+}
+.abs__svg .t-in {
+  font-size: 14px;
+  font-weight: 600;
+}
+.abs__svg .t-pill {
+  font-size: 12px;
+  font-weight: 500;
+  fill: #fff;
+}
+.abs__svg .t-vd2 {
+  font-size: 13px;
+  font-weight: 500;
+}
+.abs__svg .t-cell {
+  font-size: 12.5px;
+  font-weight: 600;
+}
+.abs__svg .hair,
+.abs__svg .grid {
+  stroke: var(--line);
+  stroke-width: 1;
+}
+.abs__svg .today {
+  stroke: var(--ink);
+  stroke-width: 1.6;
+}
+.abs__svg .cap-line {
+  stroke: var(--ink);
+  stroke-width: 1.6;
+  stroke-dasharray: 6 5;
+}
+.abs__svg .wire {
+  fill: none;
+  stroke: var(--rule);
+  stroke-width: 1.3;
+  stroke-dasharray: 3 4;
+}
+.abs__svg .wire--on {
+  stroke: var(--hotel);
+  stroke-width: 1.8;
+}
+.abs__svg .ring {
+  fill: none;
+  stroke: var(--warn);
+  stroke-width: 2;
+}
+/* what the selection leaves behind stays, quieter */
+.abs__svg .a-fade {
+  opacity: 0.32;
+}
+.abs__svg .a-growx,
+.abs__svg .a-growy,
+.abs__svg .a-pop {
+  transform-box: fill-box;
+}
+.abs__svg .a-growx {
+  transform-origin: 0 50%;
+}
+.abs__svg .a-growy {
+  transform-origin: 50% 100%;
+}
+.abs__svg .a-pop {
+  transform-origin: 50% 50%;
+}
+.abs__svg .a-draw {
+  stroke-dasharray: 1;
+}
+@keyframes k-growx {
+  from {
+    transform: scaleX(0);
+  }
+}
+@keyframes k-growy {
+  from {
+    transform: scaleY(0);
+  }
+}
+@keyframes k-pop {
+  from {
+    opacity: 0;
+    transform: scale(0.86);
+  }
+}
+@keyframes k-rise {
+  from {
+    opacity: 0;
+    transform: translateY(6px);
+  }
+}
+@keyframes k-draw {
+  from {
+    stroke-dashoffset: 1;
+  }
+}
+@keyframes k-fade {
+  from {
+    opacity: 1;
+  }
+}
+.play .a-growx {
+  animation: k-growx 0.9s var(--ease) calc(var(--d, 0) * 1ms + 150ms) both;
+}
+.play .a-growy {
+  animation: k-growy 0.9s var(--ease) calc(var(--d, 0) * 1ms + 150ms) both;
+}
+.play .a-pop {
+  animation: k-pop 0.6s var(--ease) calc(var(--d, 0) * 1ms + 150ms) both;
+}
+.play .a-rise {
+  animation: k-rise 0.7s var(--ease) calc(var(--d, 0) * 1ms + 150ms) both;
+}
+.play .a-draw {
+  animation: k-draw 0.8s var(--ease) calc(var(--d, 0) * 1ms + 150ms) both;
+}
+/* a node that leaves the chain comes in first, then steps back */
+.play .a-pop.a-fade {
+  animation: k-pop 0.6s var(--ease) calc(var(--d, 0) * 1ms + 150ms) both, k-fade 0.9s ease 1.5s both;
+}
+.play .wire.a-fade {
+  animation: k-fade 0.9s ease 1.5s both;
 }
 .points {
   margin-top: 22px;
@@ -421,12 +611,14 @@ a.tile:hover {
 }
 .pcard__img {
   margin: 8px 8px 0;
+  padding: 10px;
   overflow: hidden;
-  background: var(--ink);
+  background: var(--paper);
   border-radius: 12px;
 }
-.pcard__img img {
-  width: 100%;
+.pcard__img .abs__svg {
+  background: var(--card);
+  border-radius: 8px;
 }
 .pcard__t {
   display: grid;
@@ -599,8 +791,10 @@ a.tile:hover {
   .nav__in {
     gap: 20px;
   }
-  .shot,
-  .detail {
+  .abs {
+    border-radius: 12px;
+  }
+  .shot {
     border-radius: 12px;
     /* a whole screen cannot be read at phone width: it keeps a readable size and scrolls sideways */
     overflow-x: auto;
@@ -608,10 +802,6 @@ a.tile:hover {
   }
   .shot img {
     width: 760px;
-    max-width: none;
-  }
-  .detail img {
-    width: 640px;
     max-width: none;
   }
   .cards--one .pcard {
@@ -653,5 +843,8 @@ a.tile:hover {
   .pcard,
   .more svg {
     transition: none;
+  }
+  .play * {
+    animation: none !important;
   }
 }
